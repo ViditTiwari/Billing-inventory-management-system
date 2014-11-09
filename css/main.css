@@ -1,0 +1,93 @@
+body{
+	margin: 0;
+}
+.input-1{
+	font-family: tahoma;
+	position: absolute;
+	top: 34%;
+	left: 40%;
+	font-size: 20;
+	padding: 10 5 ;
+	border-top-left-radius: 7px;
+	border-top-right-radius: 7px;
+}
+.input-2{
+	font-family: tahoma;
+	position: absolute;
+	top: 41.3%;
+	left: 40%;
+	font-size: 20;
+	padding: 10 5 ;
+	border-bottom-left-radius: 7px;
+	border-bottom-right-radius: 7px;
+}
+.input-4 {
+	font-family: tahoma;
+	position: absolute;
+	top: 41.3%;
+	left: 40%;
+	font-size: 20;
+	padding: 10 5;
+}
+.input-3{
+	font-family: tahoma;
+	position: absolute;
+	top: 50%;
+	left: 44%;
+	font-size: 20;
+	padding: 10 25;
+
+	border-radius: 7px;
+}
+
+nav ul {
+	position: absolute;
+	left: 18%;
+}
+nav ul li{
+	
+	list-style-type: none;
+	display: inline-block;
+
+
+	margin:50 100;
+}
+.vertical{
+	position: absolute;
+	top: 1%
+}
+.vertical li{
+	list-style-type: none;
+	margin: 10px;
+    
+}
+.place-1{
+	position: absolute;
+	top:48%;
+}
+.button-1{
+	position: absolute;
+	top: 60%;
+}
+.sidebar1
+{
+    position: absolute;
+    left: 82%;
+    top: 2%;
+    
+    
+}
+
+.container{
+    padding-left: 0px;
+    margin-left: 3px;
+    width: 1120px;
+}
+
+.tables{
+    display: inline-flex;
+}
+pre{
+    margin: 0px;
+    padding: 0px;
+}
