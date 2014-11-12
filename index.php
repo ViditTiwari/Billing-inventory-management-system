@@ -26,12 +26,12 @@ if(isset($_GET['Name'])&& isset($_GET['QTY'])&& isset($_GET['TABLE_NO']))
       <pre>
      
        TABLE NUMBER   <div class="btn-group tables">
-       <form action="table1.php"><button type="submit" class="btn btn-default active" >1</button></form>
-       <form action="table2.php"><button type="submit" class="btn btn-default" >2</button></form>
-       <form action="table3.php"><button type="submit" class="btn btn-default" >3</button></form>
-       <form action="table4.php"><button type="submit" class="btn btn-default" >4</button></form>
-       <form action="table5.php"><button type="submit" class="btn btn-default" >5</button></form>
-       <form action="table6.php"><button type="submit" class="btn btn-default" >6</button></form>
+        <a href="table1.php" class="btn btn-default ">1</a>
+       <a href="tables/table2.php" class="btn btn-default">2</a>
+       <a href="tables/table3.php" class="btn btn-default">3</a>
+       <a href="tables/table4.php" class="btn btn-default">4</a>
+       <a href="tables/table5.php" class="btn btn-default">5</a>
+       <a href="tables/table6.php" class="btn btn-default">6</a>
         </div>
         </pre>
       
