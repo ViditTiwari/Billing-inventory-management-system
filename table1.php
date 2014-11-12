@@ -95,7 +95,7 @@ if(isset($_GET['Name'])&& isset($_GET['QTY'])&& isset($_GET['TABLE_NO']))
               echo '</ol>';
               echo "<strong>Total : $currency $total</strong>";
               echo '<br>';
-              echo '<span class="check-out-txt"> <a href="view_cart.php">Print KOT</a></span>';
+              echo '<span class="check-out-txt"> <a href="kot.php">Print KOT</a></span>';
               echo '<span class="empty-cart"><a href="cart_update.php?emptycart=1&return_url='.$current_url.'">Empty Cart</a></span>';
           }else{
               echo 'Your Cart is empty';
