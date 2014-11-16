@@ -35,7 +35,11 @@ include_once 'core/database/config.php';
         <div class="panel panel-default">
          <div class="panel-body" style="text-align:center">
             <strong>TABLE 1</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-             <button type="button" class="btn btn-danger ">CLEAR TABLE</button>
+            <?php 
+             //current URL of the Page. cart_update.php redirects back to this URL
+            $current_url = base64_encode("http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
+            echo '<a href = "clear_table.php?table_no=1&return_url='.$current_url.'" class="btn btn-danger" >'
+            ?>CLEAR TABLE</a>
         </div>
 
         </div>
@@ -51,8 +55,8 @@ include_once 'core/database/config.php';
       </div>
           <div class="products">
           <?php
-           //current URL of the Page. cart_update.php redirects back to this URL
-           $current_url = base64_encode("http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
+          
+           
 
           
     
@@ -98,7 +102,7 @@ include_once 'core/database/config.php';
                  { echo '<li class="cart-itm">';
                   echo '<span class="remove-itm"><a href="cart_update.php?removep='.$cart_itm["code"].'&return_url='.$current_url.'&table_no='.$cart_itm["table_no"].'">&times;</a></span>';
                   echo '<h3>'.$cart_itm["name"].'</h3>';
-                  echo '<div class="p-code">P code : '.$cart_itm["code"].'</div>';
+                  
                   echo '<div class="p-qty">Qty : '.$cart_itm["qty"].'</div>';
                   echo '<div class="p-price">Price :'.$currency.$cart_itm["price"].'</div>';
                   echo '</li>';
