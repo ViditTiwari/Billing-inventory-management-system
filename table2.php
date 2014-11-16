@@ -9,7 +9,7 @@ include_once 'core/database/config.php';
 <html>
     <head>
       <meta charset="utf-8">
-        <title>table 1</title>
+        <title>table 2</title>
         <link href="css/bootstrap.css" rel="stylesheet">
         <link href="css/style.css" rel="stylesheet">
     </head>
@@ -18,7 +18,7 @@ include_once 'core/database/config.php';
       <div class="container-fluid">   
         <div class="panel panel-default">
          <div class="panel-body" style="text-align:center">
-            <strong>TABLE 1</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <strong>TABLE 2</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
              <button type="button" class="btn btn-danger ">CLEAR TABLE</button>
         </div>
 
@@ -58,7 +58,7 @@ include_once 'core/database/config.php';
             echo '<button class="add_to_cart">Add To Cart</button>';
             echo '</span>';
             echo '<input type="hidden" name="item_code" value="'.$obj->ID.'" />';
-            echo '<input type="hidden" name="table_no" value="table 1" />';
+            echo '<input type="hidden" name="table_no" value="table 2" />';
             echo '<input type="hidden" name="type" value="add" />';
             echo '<input type="hidden" name="return_url" value="'.$current_url.'" />';
             echo '</form>';
@@ -78,7 +78,7 @@ include_once 'core/database/config.php';
               $total = 0;
               echo '<ol>';
               foreach ($_SESSION["products"] as $cart_itm)
-              {   if($cart_itm["table_no"] == 1)
+              {   if($cart_itm["table_no"] == 2)
                  { echo '<li class="cart-itm">';
                   echo '<span class="remove-itm"><a href="cart_update.php?removep='.$cart_itm["code"].'&return_url='.$current_url.'&table_no='.$cart_itm["table_no"].'">&times;</a></span>';
                   echo '<h3>'.$cart_itm["name"].'</h3>';
@@ -93,8 +93,8 @@ include_once 'core/database/config.php';
               echo '</ol>';
               echo "<strong>Total : $currency $total</strong>";
               echo '<br>';
-              echo '<span class="check-out-txt"> <a href="kot.php?table_no=1&return_url='.$current_url.'">Print KOT</a></span>';
-              echo '<span class="empty-cart"><a href="cart_update.php?emptycart=1&return_url='.$current_url.'&table_no=1">Empty Cart</a></span>';
+              echo '<span class="check-out-txt"> <a href="kot.php?table_no=2&return_url='.$current_url.'">Print KOT</a></span>';
+              echo '<span class="empty-cart"><a href="cart_update.php?emptycart=1&return_url='.$current_url.'&table_no=2">Empty Cart</a></span>';
           }else{
               echo 'Your Cart is empty';
           }

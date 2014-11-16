@@ -46,7 +46,7 @@ function get_table_kot($table_no)
 }
 function get_all_kot($table_no)
 {
-    mysql_query("SELECT * FROM `kot` WHERE table_no="$table_no"")
+    mysql_query("SELECT * FROM `kot` WHERE table_no='$table_no'");
 }
 
 //*********INVENTORY********
