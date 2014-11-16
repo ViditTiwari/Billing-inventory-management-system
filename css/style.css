@@ -7,11 +7,13 @@ body{
 		width: 90%;
 	float:left;
 	margin-right: 10px;
+	margin-bottom: 0px;
 }
 .panel-body1
 {
 	
 	padding: 10px;
+	margin-bottom: 0px;
 }
 #products-wrapper {
 	width: 800px;

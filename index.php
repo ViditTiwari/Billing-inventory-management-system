@@ -45,7 +45,27 @@ include_once 'core/database/config.php';
         </div>
         
        <div class="col-md-12 col-xs-12">
-          <div class="col-md-3"></div>
+          <div class="col-md-3" id="myScrollspy">
+            <ul class="nav nav-tabs nav-stacked affix-top" data-spy="affix" data-offset-top="25">
+              <?php
+            $results = $mysqli->query("SELECT * FROM category");
+           if ($results) { 
+            //output results from database
+            $ctr=0;
+            while($obj = $results->fetch_object())
+          {     if($ctr == 0)
+                echo '<li class="active"><a href="#'.$obj->category.'">'.$obj->category.'</a></li>';
+                 
+                else
+                echo '<li><a href="#'.$obj->category.'">'.$obj->category.'</a></li>';
+
+                $ctr++;
+           }
+         }
+         ?>
+            </ul>
+        </div>
+
 
           <div class="col-md-6">
              <div class="panel panel1 panel-default">
@@ -63,8 +83,17 @@ include_once 'core/database/config.php';
            $results = $mysqli->query("SELECT * FROM menu");
            if ($results) { 
             //output results from database
+            $ctr1=1;
             while($obj = $results->fetch_object())
-          {
+          { 
+            if($obj->category_id == $ctr1)
+            { $sql = "SELECT category FROM category WHERE category_id='$ctr1'";  
+              $result = $mysqli->query($sql);
+              $row = $result->fetch_assoc();
+              
+              echo '<h3 id='.$row["category"].'>'.$row["category"].'</h3>';
+              $ctr1++;
+            }
             
             echo '<div class="product">'; 
             echo '<form method="post" action="cart_update.php">';
