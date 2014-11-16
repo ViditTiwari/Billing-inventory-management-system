@@ -1,5 +1,12 @@
 <?php
-
+function array_first_element($var)
+{
+  $row = mysql_fetch_row($var);
+ if($row[0])
+ {  
+ 	return $row [0]; 
+}
+}
 function add_menu_item($item_name,$price,$category)
 
 { $category_id = get_category_id($category);
@@ -20,14 +27,26 @@ function get_category_id($category)
 
 }
 
-function add_kot_item($Name,$QTY,$TABLE_NO)
+
+function add_kot_item($Name,$QTY,$TABLE_NO,$kot_no)
 
 { 
     
  $BITCH = mysql_query("SELECT ID FROM menu WHERE item_name='$Name'");
     $row = mysql_fetch_row($BITCH);
-   $ID= $row[0];
-  mysql_query("INSERT INTO kot (ID,QTY,TABLE_NO) VALUES ('$ID','$QTY','$TABLE_NO')");
+    $ID= $row[0];
+    
+  mysql_query("INSERT INTO kot (ID,QTY,TABLE_NO,kot_no) VALUES ('$ID','$QTY','$TABLE_NO','$kot_no')");
+}
+function get_table_kot($table_no)
+{
+    $table=array();
+    $table=mysql_query("SELECT (ID,QTY,TABLE_NO,kot_no) FROM kot WHERE TABLE_NO='$table_no'"); /*id to menu*/
+           
+}
+function get_all_kot($table_no)
+{
+    mysql_query("SELECT * FROM `kot` WHERE table_no="$table_no"")
 }
 
 //*********INVENTORY********
