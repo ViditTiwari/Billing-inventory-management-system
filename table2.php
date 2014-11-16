@@ -24,8 +24,8 @@ include_once 'core/database/config.php';
       <pre>
      
        TABLE NUMBER   <div class="btn-group tables">
-        <a href="#" class="active btn btn-default ">1</a>
-       <a href="table2.php" class="btn btn-default">2</a>
+        <a href="index.php" class="btn btn-default ">1</a>
+       <a href="#" class=" active btn btn-default">2</a>
        <a href="table3.php" class="btn btn-default">3</a>
        <a href="table4.php" class="btn btn-default">4</a>
        <a href="table5.php" class="btn btn-default">5</a>
@@ -34,7 +34,7 @@ include_once 'core/database/config.php';
         </pre>
         <div class="panel panel-default">
          <div class="panel-body" style="text-align:center">
-            <strong>TABLE 1</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <strong>TABLE 2</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
              <button type="button" class="btn btn-danger ">CLEAR TABLE</button>
         </div>
 
@@ -54,7 +54,7 @@ include_once 'core/database/config.php';
            //current URL of the Page. cart_update.php redirects back to this URL
            $current_url = base64_encode("http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
 
-          
+           
     
            $results = $mysqli->query("SELECT * FROM menu");
            if ($results) { 
@@ -74,7 +74,7 @@ include_once 'core/database/config.php';
             echo '<button class="add_to_cart">Add To Cart</button>';
             echo '</span>';
             echo '<input type="hidden" name="item_code" value="'.$obj->ID.'" />';
-            echo '<input type="hidden" name="table_no" value="table 1" />';
+            echo '<input type="hidden" name="table_no" value="table 2" />';
             echo '<input type="hidden" name="type" value="add" />';
             echo '<input type="hidden" name="return_url" value="'.$current_url.'" />';
             echo '</form>';
@@ -94,7 +94,7 @@ include_once 'core/database/config.php';
               $total = 0;
               echo '<ol>';
               foreach ($_SESSION["products"] as $cart_itm)
-              {   if($cart_itm["table_no"] == 1)
+              {   if($cart_itm["table_no"] == 2)
                  { echo '<li class="cart-itm">';
                   echo '<span class="remove-itm"><a href="cart_update.php?removep='.$cart_itm["code"].'&return_url='.$current_url.'&table_no='.$cart_itm["table_no"].'">&times;</a></span>';
                   echo '<h3>'.$cart_itm["name"].'</h3>';
@@ -109,14 +109,15 @@ include_once 'core/database/config.php';
               echo '</ol>';
               echo "<strong>Total : $currency $total</strong>";
               echo '<br>';
-              echo '<span class="check-out-txt"> <a href="kot.php?table_no=1&return_url='.$current_url.'">Print KOT</a></span>';
-              echo '<span class="empty-cart"><a href="cart_update.php?emptycart=1&return_url='.$current_url.'&table_no=1">Empty Cart</a></span>';
+              echo '<span class="check-out-txt"> <a href="kot.php?table_no=2&return_url='.$current_url.'">Print KOT</a></span>';
+              echo '<span class="empty-cart"><a href="cart_update.php?emptycart=1&return_url='.$current_url.'&table_no=2">Empty Cart</a></span>';
           }else{
               echo 'Your Cart is empty';
           }
           ?>
           </div>
       </div>
+    </div>
 
 
       
@@ -149,3 +150,20 @@ include_once 'core/database/config.php';
     <script src="js/bootstrap.js"></script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

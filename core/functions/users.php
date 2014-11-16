@@ -44,7 +44,14 @@ function get_table_kot($table_no)
     $table=mysql_query("SELECT (ID,QTY,TABLE_NO,kot_no) FROM kot WHERE TABLE_NO='$table_no'"); /*id to menu*/
            
 }
+<<<<<<< HEAD
 
+=======
+function get_all_kot($table_no)
+{
+    mysql_query("SELECT * FROM `kot` WHERE table_no='$table_no'");
+}
+>>>>>>> d79646c36557f64fa2a55904e833673ea1ddc5e5
 
 //*********INVENTORY********
 

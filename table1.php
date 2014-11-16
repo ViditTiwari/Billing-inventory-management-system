@@ -3,13 +3,7 @@
 session_start();
 
 include_once 'core/database/config.php';
-if(isset($_GET['Name'])&& isset($_GET['QTY'])&& isset($_GET['TABLE_NO']))
-{   
-	$Name=$_GET['Name'];
-	$QTY=$_GET['QTY'];
-	$TABLE_NO=$_GET['TABLE_NO'];
-	add_kot_item($Name,$QTY,$TABLE_NO);
-}
+
 ?>
 
 <html>
@@ -43,6 +37,8 @@ if(isset($_GET['Name'])&& isset($_GET['QTY'])&& isset($_GET['TABLE_NO']))
           <?php
            //current URL of the Page. cart_update.php redirects back to this URL
            $current_url = base64_encode("http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
+
+          
     
            $results = $mysqli->query("SELECT * FROM menu");
            if ($results) { 
@@ -62,6 +58,7 @@ if(isset($_GET['Name'])&& isset($_GET['QTY'])&& isset($_GET['TABLE_NO']))
             echo '<button class="add_to_cart">Add To Cart</button>';
             echo '</span>';
             echo '<input type="hidden" name="item_code" value="'.$obj->ID.'" />';
+            echo '<input type="hidden" name="table_no" value="table 1" />';
             echo '<input type="hidden" name="type" value="add" />';
             echo '<input type="hidden" name="return_url" value="'.$current_url.'" />';
             echo '</form>';
@@ -81,9 +78,9 @@ if(isset($_GET['Name'])&& isset($_GET['QTY'])&& isset($_GET['TABLE_NO']))
               $total = 0;
               echo '<ol>';
               foreach ($_SESSION["products"] as $cart_itm)
-              {
-                  echo '<li class="cart-itm">';
-                  echo '<span class="remove-itm"><a href="cart_update.php?removep='.$cart_itm["code"].'&return_url='.$current_url.'">&times;</a></span>';
+              {   if($cart_itm["table_no"] == 1)
+                 { echo '<li class="cart-itm">';
+                  echo '<span class="remove-itm"><a href="cart_update.php?removep='.$cart_itm["code"].'&return_url='.$current_url.'&table_no='.$cart_itm["table_no"].'">&times;</a></span>';
                   echo '<h3>'.$cart_itm["name"].'</h3>';
                   echo '<div class="p-code">P code : '.$cart_itm["code"].'</div>';
                   echo '<div class="p-qty">Qty : '.$cart_itm["qty"].'</div>';
@@ -91,12 +88,13 @@ if(isset($_GET['Name'])&& isset($_GET['QTY'])&& isset($_GET['TABLE_NO']))
                   echo '</li>';
                   $subtotal = ($cart_itm["price"]*$cart_itm["qty"]);
                   $total = ($total + $subtotal);
+                }
               }
               echo '</ol>';
               echo "<strong>Total : $currency $total</strong>";
               echo '<br>';
-              echo '<span class="check-out-txt"> <a href="kot.php">Print KOT</a></span>';
-              echo '<span class="empty-cart"><a href="cart_update.php?emptycart=1&return_url='.$current_url.'">Empty Cart</a></span>';
+              echo '<span class="check-out-txt"> <a href="kot.php?table_no=1&return_url='.$current_url.'">Print KOT</a></span>';
+              echo '<span class="empty-cart"><a href="cart_update.php?emptycart=1&return_url='.$current_url.'&table_no=1">Empty Cart</a></span>';
           }else{
               echo 'Your Cart is empty';
           }
