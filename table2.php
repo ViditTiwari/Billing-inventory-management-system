@@ -1,21 +1,37 @@
 <?php
-
 session_start();
 
 include_once 'core/database/config.php';
 
 ?>
-
 <html>
-    <head>
-      <meta charset="utf-8">
-        <title>table 2</title>
-        <link href="css/bootstrap.css" rel="stylesheet">
-        <link href="css/style.css" rel="stylesheet">
-    </head>
-
-    <body>
-      <div class="container-fluid">   
+<head>
+   <meta charset="utf-8">
+    <title>index</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+    <div class="tabbable tabs1 container">
+  <ul class="nav nav-tabs">
+    <li class="active"><a href="#pane1" data-toggle="tab">Dine-in</a></li>
+    <li><a href="#pane2" data-toggle="tab">Home Delivery</a></li>
+    <li><a href="#pane3" data-toggle="tab">Take Away</a></li>
+  </ul>
+  <div class="tab-content">
+    <div id="pane1" class="tab-pane active">
+      <pre>
+     
+       TABLE NUMBER   <div class="btn-group tables">
+        <a href="index.php" class="btn btn-default ">1</a>
+       <a href="#" class=" active btn btn-default">2</a>
+       <a href="table3.php" class="btn btn-default">3</a>
+       <a href="table4.php" class="btn btn-default">4</a>
+       <a href="table5.php" class="btn btn-default">5</a>
+       <a href="table6.php" class="btn btn-default">6</a>
+        </div>
+        </pre>
         <div class="panel panel-default">
          <div class="panel-body" style="text-align:center">
             <strong>TABLE 2</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -38,7 +54,7 @@ include_once 'core/database/config.php';
            //current URL of the Page. cart_update.php redirects back to this URL
            $current_url = base64_encode("http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
 
-           echo $current_url;
+           
     
            $results = $mysqli->query("SELECT * FROM menu");
            if ($results) { 
@@ -103,7 +119,51 @@ include_once 'core/database/config.php';
       </div>
     </div>
 
-        
-      </body>
-    
+
+      
+    </div>
+    <div id="pane2" class="tab-pane">
+    <h4>Pane 2 Content</h4>
+      <p> and so on ...</p>
+    </div>
+    <div id="pane3" class="tab-pane">
+      <h4>Pane 3 Content</h4>
+    </div>
+  </div><!-- /.tab-content -->
+</div><!-- /.tabbable -->
+
+            <div class="">
+              <div class="row">
+                <div class="col-sm-3 col-md-2 sidebar sidebar1">
+                  <ul class="nav nav-sidebar">
+                    <li class="active"><a href="index.php">HOME</a></li>
+                    <li><a href="addnewitems.php">Add New Items</a></li>    
+                    <li><a href="inventory.php">Inventory</a></li>    
+                    <li><a href="login.php">Login/out</a></li>
+                  </ul>
+                </div>
+                </div>
+            </div>    
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="js/bootstrap.js"></script>
+</body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

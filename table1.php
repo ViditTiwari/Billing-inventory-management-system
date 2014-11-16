@@ -38,7 +38,7 @@ include_once 'core/database/config.php';
            //current URL of the Page. cart_update.php redirects back to this URL
            $current_url = base64_encode("http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
 
-           echo $current_url;
+          
     
            $results = $mysqli->query("SELECT * FROM menu");
            if ($results) { 
