@@ -52,7 +52,7 @@ function add_kot_to_kotb($table_no)
 }
 
 function add_kot_to_bill($table_no)
-{   mysql_query("INSERT INTO `bill`SELECT kot.ID, kot.QTY,kot.TABLE_NO,kot.TIME,menu.price FROM kot INNER JOIN menu ON kot.id=menu.id WHERE            kot.table_no='$table_no'");      //legen-waitforit-dary
+{   mysql_query("INSERT INTO (ID,QTY,TABLE_NO,price)`bill`SELECT kot.ID, kot.QTY,kot.TABLE_NO,menu.price FROM kot INNER JOIN menu ON kot.id=menu.id WHERE            kot.table_no='$table_no'");      //legen-waitforit-dary
    
     // $temp=mysql_query("select * from kot where table_no='$table_no'");//insert into bill(ID,QTY,TABLE_NO) SELECT ID,QTY,TABLE_NO FROM kot WHERE TABLE_NO=2
    // mysql_query("insert into bill '$temp'");//UPDATE `bill` SET `price`= menu.price WHERE bill.id = menu.id
