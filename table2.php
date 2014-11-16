@@ -13,6 +13,7 @@ include_once 'core/database/config.php';
     <link href="css/style.css" rel="stylesheet">
 </head>
 <body>
+  
     <div class="tabbable tabs1 container">
   <ul class="nav nav-tabs">
     <li class="active"><a href="#pane1" data-toggle="tab">Dine-in</a></li>
@@ -147,7 +148,7 @@ include_once 'core/database/config.php';
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script src="js/bootstrap.js"></script>
+<script src="js/bootstrap.js"></script>
 </body>
 </html>
 

@@ -117,9 +117,9 @@ include_once 'core/database/config.php';
           ?>
           </div>
       </div>
+    </div>
 
-
-      
+    
     </div>
     <div id="pane2" class="tab-pane">
     <h4>Pane 2 Content</h4>
