@@ -37,6 +37,7 @@ function add_kot_item($Name,$QTY,$TABLE_NO,$kot_no)
     $ID= $row[0];
     
   mysql_query("INSERT INTO kot (ID,QTY,TABLE_NO,kot_no) VALUES ('$ID','$QTY','$TABLE_NO','$kot_no')");
+    
 }
 function get_table_kot($table_no)
 {
@@ -44,14 +45,24 @@ function get_table_kot($table_no)
     $table=mysql_query("SELECT (ID,QTY,TABLE_NO,kot_no) FROM kot WHERE TABLE_NO='$table_no'"); /*id to menu*/
            
 }
-<<<<<<< HEAD
 
-=======
-function get_all_kot($table_no)
+function add_kot_to_kotb($table_no)
 {
-    mysql_query("SELECT * FROM `kot` WHERE table_no='$table_no'");
+    mysql_query("insert into kot_backup select * from kot where table_no='$table_no'");
 }
->>>>>>> d79646c36557f64fa2a55904e833673ea1ddc5e5
+
+function add_kot_to_bill($table_no)
+{   mysql_query("INSERT INTO `bill`SELECT kot.ID, kot.QTY,kot.TABLE_NO,kot.TIME,menu.price FROM kot INNER JOIN menu ON kot.id=menu.id WHERE            kot.table_no='$table_no'");      //legen-waitforit-dary
+   
+    // $temp=mysql_query("select * from kot where table_no='$table_no'");//insert into bill(ID,QTY,TABLE_NO) SELECT ID,QTY,TABLE_NO FROM kot WHERE TABLE_NO=2
+   // mysql_query("insert into bill '$temp'");//UPDATE `bill` SET `price`= menu.price WHERE bill.id = menu.id
+}
+
+function delete_all_kot($table_no)
+{
+    mysql_query("DELETE FROM kot WHERE table_no = '$table_no'");
+}
+
 
 //*********INVENTORY********
 

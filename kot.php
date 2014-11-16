@@ -40,6 +40,7 @@ if(isset($_SESSION["products"]))
               }
             $kot_no++;
             mysql_query("UPDATE `present_kot` SET `kot_no`='$kot_no'"); 
+           
             
            }
 
