@@ -11,16 +11,41 @@ include_once 'core/database/config.php';
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/main.css">
     <link href="css/style.css" rel="stylesheet">
+
 </head>
+<header>
+    <nav class="navbar navbar-default" role="navigation">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="index.php">Dine-in <span class="sr-only">(current)</span></a></li>
+        <li><a href="takeaway.php">Take Away</a></li>
+        <li><a href="homedelivery.php">Home Delivery</a></li>
+        <li><a href="addnewitems.php">Add New Items</a></li>    
+        <li><a href="inventory.php">Inventory</a></li>    
+        
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="login.php">Login/out</a></li></ul>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+</header>
 <body>
-    <div class="tabbable tabs1 container">
-  <ul class="nav nav-tabs">
-    <li class="active"><a href="#pane1" data-toggle="tab">Dine-in</a></li>
-    <li><a href="#pane2" data-toggle="tab">Home Delivery</a></li>
-    <li><a href="#pane3" data-toggle="tab">Take Away</a></li>
-  </ul>
-  <div class="tab-content">
-    <div id="pane1" class="tab-pane active">
+   
+     <div class="container">
       <pre>
      
        TABLE NUMBER   <div class="btn-group tables">
@@ -154,28 +179,8 @@ include_once 'core/database/config.php';
 
     
     </div>
-    <div id="pane2" class="tab-pane">
-    <h4>Pane 2 Content</h4>
-      <p> and so on ...</p>
-    </div>
-    <div id="pane3" class="tab-pane">
-      <h4>Pane 3 Content</h4>
-    </div>
-  </div><!-- /.tab-content -->
-</div><!-- /.tabbable -->
+    
 
-            <div class="">
-              <div class="row">
-                <div class="col-sm-3 col-md-2 sidebar sidebar1">
-                  <ul class="nav nav-sidebar">
-                    <li class="active"><a href="index.php">HOME</a></li>
-                    <li><a href="addnewitems.php">Add New Items</a></li>    
-                    <li><a href="inventory.php">Inventory</a></li>    
-                    <li><a href="login.php">Login/out</a></li>
-                  </ul>
-                </div>
-                </div>
-            </div>    
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
