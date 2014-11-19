@@ -14,7 +14,7 @@ include_once 'core/database/config.php';
 
 </head>
 <header>
-    <nav class="navbar navbar-default" role="navigation">
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
@@ -46,9 +46,9 @@ include_once 'core/database/config.php';
 <body>
    
      <div class="container">
-      <pre>
+      <pre >
      
-       TABLE NUMBER   <div class="btn-group tables">
+       TABLE NUMBER   <div class="btn-group tables" >
         <a href="#" class="active btn btn-default ">1</a>
        <a href="table2.php" class="btn btn-default">2</a>
        <a href="table3.php" class="btn btn-default">3</a>
