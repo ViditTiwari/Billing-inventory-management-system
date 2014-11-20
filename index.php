@@ -128,8 +128,8 @@ include_once 'core/database/config.php';
             
             echo '<span class="product-info">';
             echo 'Price '.$currency.$obj->price.' | ';
-            echo 'Qty <input type="text" name="product_qty" value="1" size="3" />';
-            echo '<button class="add_to_cart">Add To Cart</button>';
+            echo 'Qty <input type="text" name="product_qty" class = "product_qty" value="1" size="3" />&nbsp;&nbsp;';
+            echo '<button class="btn btn-success btn-xs">Add To Cart</button>';
             echo '</span>';
             echo '<input type="hidden" name="item_code" value="'.$obj->ID.'" />';
             echo '<input type="hidden" name="table_no" value="table 1" />';
@@ -167,8 +167,9 @@ include_once 'core/database/config.php';
               echo '</ol>';
               echo "<strong>Total : $currency $total</strong>";
               echo '<br>';
-              echo '<span class="check-out-txt"> <a href="kot.php?table_no=1&return_url='.$current_url.'">Print KOT</a></span>';
-              echo '<span class="empty-cart"><a href="cart_update.php?emptycart=1&return_url='.$current_url.'&table_no=1">Empty Cart</a></span>';
+              echo '<div class="padding-class"></div>';
+              echo '<span class="check-out-txt"> <a href="kot.php?table_no=1&return_url='.$current_url.'" class= "btn btn-primary btn-xs">Print KOT</a></span>';
+              echo '<span class="empty-cart"><a href="cart_update.php?emptycart=1&return_url='.$current_url.'&table_no=1" class= "btn btn-danger btn-xs">Empty Cart</a></span>';
           }else{
               echo 'Your Cart is empty';
           }

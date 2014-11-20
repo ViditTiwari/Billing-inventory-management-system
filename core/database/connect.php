@@ -1,8 +1,8 @@
 <?php
 $connect_error='Sorry, we\'re experiencing connection problems.';
-mysql_connect('localhost','username here','password here') or die(mysql_error());
+mysql_connect('localhost','root','shabdvriksh') or die(mysql_error());
 
 
-mysql_select_db('database name here') or die($connect_error);
+mysql_select_db('cdbms') or die($connect_error);
 
 ?>
