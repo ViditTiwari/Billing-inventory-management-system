@@ -128,7 +128,7 @@ include_once 'core/database/config.php';
             
             echo '<span class="product-info">';
             echo 'Price '.$currency.$obj->price.' | ';
-             echo 'Qty <input type="text" name="product_qty" class = "product_qty" value="1" size="3" />&nbsp;&nbsp;';
+            echo 'Qty <input type="text" name="product_qty" class = "product_qty" value="1" size="3" />&nbsp;&nbsp;';
             echo '<button class="btn btn-success btn-xs">Add To Cart</button>';
             echo '</span>';
             echo '<input type="hidden" name="item_code" value="'.$obj->ID.'" />';
