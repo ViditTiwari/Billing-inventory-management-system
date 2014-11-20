@@ -45,7 +45,7 @@ include_once 'core/database/config.php';
 </header>
 <body>
    
-     <div class="container">
+     <div class="container-fluid">
       <pre >
      
        TABLE NUMBER   <div class="btn-group tables" >
@@ -70,7 +70,7 @@ include_once 'core/database/config.php';
         </div>
         
        <div class="col-md-12 col-xs-12">
-          <div class="col-md-3" id="myScrollspy">
+          <div class="col-md-2" id="myScrollspy">
             <ul class="nav nav-tabs nav-stacked affix-top" data-spy="affix" data-offset-top="25">
               <?php
             $results = $mysqli->query("SELECT * FROM category");
@@ -143,7 +143,7 @@ include_once 'core/database/config.php';
        ?>
       </div>
       </div>
-    <div class="col-md-3">
+    <div class="col-md-2">
       <div class="shopping-cart">
           <h2>Your KOT Cart</h2>
           <?php
@@ -172,6 +172,51 @@ include_once 'core/database/config.php';
           }else{
               echo 'Your Cart is empty';
           }
+          ?>
+          </div>
+      </div>
+
+      <div class="col-md-2">
+      <div class="shopping-cart">
+          <h2>Done KOT</h2>
+          <?php
+          
+          $results = $mysqli->query("SELECT * FROM kot WHERE TABLE_NO ='1'");
+              if ($results) { 
+              echo '<ol>';
+
+               $total1=0;
+               
+                //output results from database
+               $ctr=0;
+                  
+              while ($obj = $results->fetch_object())
+              {  
+                  echo '<li class="cart-itm">';
+                  
+
+                  
+                  $results1 = $mysqli->query("SELECT * FROM menu WHERE ID ='$obj->ID'");
+                  $obj1 = $results1->fetch_object();
+                  echo '<h3>'.$obj1->item_name.'</h3>';
+                  echo '<div class="p-qty">Qty : '.$obj->QTY.'</div>';
+                  echo '<div class="p-price">Price :'.$currency.$obj1->price.'</div>';
+                  
+                  echo '</li>';
+                  
+                  $subtotal1 = ($obj1->price*$obj->QTY);
+                  $total1 = ($total1 + $subtotal1);
+                  $ctr++;
+                
+              }
+              echo '</ol>';
+              echo "<strong>Total : $currency $total1</strong>";
+              echo '<br>';
+              
+          }else{
+              echo 'Your Cart is empty';
+          }
+
           ?>
           </div>
       </div>
