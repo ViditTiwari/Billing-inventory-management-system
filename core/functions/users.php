@@ -44,10 +44,19 @@ function add_kot_item($Name,$QTY,$TABLE_NO,$kot_no)
 }
 
 function add_to_bill($ID,$QTY,$TABLE_NO,$PRICE)
-{ $bill_no=mysql_query("SELECT bill_no FROM present_bill");
+{
+    if($table_no==7)
+    { 
+        $type=2;
+      }
+    elseif($table_no==8)
+    {
+        $type=3;
+    }
+    $bill_no=mysql_query("SELECT bill_no FROM present_bill");
     $bill_no=array_first_element($bill_no);
 
-    mysql_query("INSERT INTO `bill`(ID,QTY,TABLE_NO,price,bill_no) Values('$ID','$QTY','$TABLE_NO','$PRICE','$bill_no')");
+    mysql_query("INSERT INTO `bill`(ID,QTY,TABLE_NO,price,bill_no,type) Values('$ID','$QTY','$TABLE_NO','$PRICE','$bill_no','$type')");
 
     $bill_no++;
      mysql_query("UPDATE `present_bill` SET `bill_no`='$bill_no'"); 
@@ -70,17 +79,8 @@ function add_kot_to_bill($table_no)
 {   
     $bill_no=mysql_query("SELECT bill_no FROM present_bill");
     $bill_no=array_first_element($bill_no);
-    if($table_no==7)
-    { 
-        $type=2;
-      }
-    elseif($table_no==8)
-    {
-        $type=3;
-    }
-    else{
-        $type=1;
-    }
+    
+    
     mysql_query("INSERT INTO `bill`(ID,QTY,TABLE_NO,price,bill_no,type) SELECT kot.ID, kot.QTY,kot.TABLE_NO,menu.price,present_bill.bill_no,1 FROM present_bill,kot INNER JOIN menu ON kot.id=menu.id WHERE kot.table_no='$table_no'");     
     
     $bill_no++;
