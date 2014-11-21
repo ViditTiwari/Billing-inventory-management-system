@@ -43,14 +43,12 @@ function add_kot_item($Name,$QTY,$TABLE_NO,$kot_no)
     
 }
 
-function add_to_bill($ID,$QTY,$TABLE_NO,$PRICE)
-{ $bill_no=mysql_query("SELECT bill_no FROM present_bill");
-    $bill_no=array_first_element($bill_no);
+function add_to_bill($ID,$QTY,$TABLE_NO,$PRICE,$bill_no)
+{ 
 
     mysql_query("INSERT INTO `bill`(ID,QTY,TABLE_NO,price,bill_no) Values('$ID','$QTY','$TABLE_NO','$PRICE','$bill_no')");
 
-    $bill_no++;
-     mysql_query("UPDATE `present_bill` SET `bill_no`='$bill_no'"); 
+  
   
 }
 

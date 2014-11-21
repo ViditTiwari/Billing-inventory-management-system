@@ -11,7 +11,8 @@ if(isset($_SESSION["products"]))
           {  $table_no = $_GET["table_no"];
              $return_url = $_GET["return_url"];
            
-             
+             $bill_no=mysql_query("SELECT bill_no FROM present_bill");
+             $bill_no=array_first_element($bill_no);
              
               foreach ($_SESSION["products"] as $cart_itm)
               {
@@ -33,11 +34,13 @@ if(isset($_SESSION["products"]))
                             $QTY=$cart_itm["qty"];
                             $TABLE_NO=$cart_itm["table_no"];
                             $PRICE = $cart_itm["price"];
-                            add_to_bill($ID,$QTY,$TABLE_NO,$PRICE);
+                            add_to_bill($ID,$QTY,$TABLE_NO,$PRICE,$bill_no);
                         
                         }
                    }
               }
+                $bill_no++;
+               mysql_query("UPDATE `present_bill` SET `bill_no`='$bill_no'"); 
             
            
             
