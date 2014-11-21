@@ -43,24 +43,21 @@ function add_kot_item($Name,$QTY,$TABLE_NO,$kot_no)
     
 }
 
-function add_to_bill($ID,$QTY,$TABLE_NO,$PRICE)
+function add_to_bill($ID,$QTY,$TABLE_NO,$PRICE,$bill_no)
 {
-    if($table_no==7)
+    if($TABLE_NO==7)
     { 
         $type=2;
       }
-    elseif($table_no==8)
+    elseif($TABLE_NO==8)
     {
         $type=3;
     }
-    $bill_no=mysql_query("SELECT bill_no FROM present_bill");
-    $bill_no=array_first_element($bill_no);
+    
 
     mysql_query("INSERT INTO `bill`(ID,QTY,TABLE_NO,price,bill_no,type) Values('$ID','$QTY','$TABLE_NO','$PRICE','$bill_no','$type')");
 
-    $bill_no++;
-     mysql_query("UPDATE `present_bill` SET `bill_no`='$bill_no'"); 
-  
+    
 }
 
 function get_table_kot($table_no)
