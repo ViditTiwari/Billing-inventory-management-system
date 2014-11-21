@@ -69,7 +69,7 @@ function add_kot_to_bill($table_no)
     else{
         $type=1;
     }
-    mysql_query("INSERT INTO `bill`(ID,QTY,TABLE_NO,price,bill_no) SELECT kot.ID, kot.QTY,kot.TABLE_NO,menu.price,present_bill.bill_no FROM present_bill,kot INNER JOIN menu ON kot.id=menu.id WHERE kot.table_no='$table_no'");      //legen-waitforit-dary
+    mysql_query("INSERT INTO `bill`(ID,QTY,TABLE_NO,price,bill_no,type) SELECT kot.ID, kot.QTY,kot.TABLE_NO,menu.price,present_bill.bill_no,1 FROM present_bill,kot INNER JOIN menu ON kot.id=menu.id WHERE kot.table_no='$table_no'");     
     
     $bill_no++;
      mysql_query("UPDATE `present_bill` SET `bill_no`='$bill_no'"); 
