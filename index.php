@@ -183,7 +183,7 @@ include_once 'core/database/config.php';
           <?php
           
           $results = $mysqli->query("SELECT * FROM kot WHERE TABLE_NO ='1'");
-              if ($results) { 
+              if (mysqli_num_rows ($results)>0 ) { 
               echo '<ol>';
 
                $total1=0;
@@ -215,7 +215,7 @@ include_once 'core/database/config.php';
               echo '<br>';
               
           }else{
-              echo 'Your Cart is empty';
+              echo 'Done KOT is empty';
           }
 
           ?>
