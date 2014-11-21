@@ -61,7 +61,7 @@ if(isset($_GET['ingriedient'])&& isset($_GET['init']))
         <input type="text" placeholder="final quantity" name="final">
         <input type="submit" value="submit">
         </form> 
-        <form action="newinventory.php"><input type="submit" value="add new inventory item"></form>
+        
         
         
         

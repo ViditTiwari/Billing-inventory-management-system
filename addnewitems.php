@@ -12,6 +12,11 @@ if(isset($_GET['item'])&& isset($_GET['price'])&& isset($_GET['category']))
 	$category=$_GET['category'];
 	add_menu_item($item_name,$price,$category);
 }
+if(isset($_GET['category']))
+{   
+	$category=$_GET['category'];
+	add_category($category);
+}
 ?>
 <html>
 <head>
@@ -66,6 +71,13 @@ if(isset($_GET['item'])&& isset($_GET['price'])&& isset($_GET['category']))
         <input type="text"  placeholder="Dish Name" name ="item" >
         <input type="text"  placeholder="Category" name="category" >
         <input type="number"  placeholder="Price" name="price">
+        <input value="submit" type="submit">
+    </form>
+</pre>
+   <pre>
+   <h3>NEW CATEGORY</h3>
+    <form action="" method="GET">
+        <input type="text"  placeholder="New Category" name ="category" >
         <input value="submit" type="submit">
     </form>
 </pre>
