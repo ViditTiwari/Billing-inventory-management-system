@@ -61,9 +61,10 @@ include_once 'core/database/config.php';
          <div class="panel-body" style="text-align:center">
             <strong>TABLE 1</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <?php 
+            $table_no = 1;
              //current URL of the Page. cart_update.php redirects back to this URL
             $current_url = base64_encode("http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
-            echo '<a href = "clear_table.php?table_no=1&return_url='.$current_url.'" class="btn btn-danger" >'
+            echo '<a href = "clear_table.php?table_no='.$table_no.'&return_url='.$current_url.'" class="btn btn-danger" >'
             ?>CLEAR TABLE</a>
         </div>
 
@@ -132,7 +133,7 @@ include_once 'core/database/config.php';
             echo '<button class="btn btn-success btn-xs">Add To Cart</button>';
             echo '</span>';
             echo '<input type="hidden" name="item_code" value="'.$obj->ID.'" />';
-            echo '<input type="hidden" name="table_no" value="table 1" />';
+            echo '<input type="hidden" name="table_no" value="'.$table_no.'" />';
             echo '<input type="hidden" name="type" value="add" />';
             echo '<input type="hidden" name="return_url" value="'.$current_url.'" />';
             echo '</form>';
@@ -152,7 +153,7 @@ include_once 'core/database/config.php';
               $total = 0;
               echo '<ol>';
               foreach ($_SESSION["products"] as $cart_itm)
-              {   if($cart_itm["table_no"] == 1)
+              {   if($cart_itm["table_no"] == $table_no)
                  { echo '<li class="cart-itm">';
                   echo '<span class="remove-itm"><a href="cart_update.php?removep='.$cart_itm["code"].'&return_url='.$current_url.'&table_no='.$cart_itm["table_no"].'">&times;</a></span>';
                   echo '<h3>'.$cart_itm["name"].'</h3>';
@@ -168,8 +169,8 @@ include_once 'core/database/config.php';
               echo "<strong>Total : $currency $total</strong>";
               echo '<br>';
               echo '<div class="padding-class"></div>';
-              echo '<span class="check-out-txt"> <a href="kot.php?table_no=1&return_url='.$current_url.'" class= "btn btn-primary btn-xs">Print KOT</a></span>';
-              echo '<span class="empty-cart"><a href="cart_update.php?emptycart=1&return_url='.$current_url.'&table_no=1" class= "btn btn-danger btn-xs">Empty Cart</a></span>';
+              echo '<span class="check-out-txt"> <a href="kot.php?table_no='.$table_no.'&return_url='.$current_url.'" class= "btn btn-primary btn-xs">Print KOT</a></span>';
+              echo '<span class="empty-cart"><a href="cart_update.php?emptycart=1&return_url='.$current_url.'&table_no='.$table_no.'" class= "btn btn-danger btn-xs">Empty Cart</a></span>';
           }else{
               echo 'Your Cart is empty';
           }
@@ -182,7 +183,7 @@ include_once 'core/database/config.php';
           <h2>Done KOT</h2>
           <?php
           
-          $results = $mysqli->query("SELECT * FROM kot WHERE TABLE_NO ='1'");
+          $results = $mysqli->query("SELECT * FROM kot WHERE TABLE_NO = $table_no");
               if (mysqli_num_rows ($results)>0 ) { 
               echo '<ol>';
 
