@@ -14,7 +14,7 @@ include_once 'core/database/config.php';
 
 </head>
 <header>
-    <nav class="navbar navbar-default" role="navigation">
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
@@ -43,6 +43,81 @@ include_once 'core/database/config.php';
   </div><!-- /.container-fluid -->
 </nav>
 </header>
+
+<div class="container">
+  
+  <div class="col-md-6" style="text-align:center">
+    <h4>Search User by Mobile Number</h4>
+
+
+    <div class="form-group">
+    
+    <div class="col-md-2"></div>
+    <div class="col-md-8" >
+      <input type="text" class="form-control" id="inputNo" placeholder="Search Mobile Number">
+    </div>
+
+  </div>
+
+  </div>
+    
+    <div class="col-md-6" style="text-align:center">
+      <h4>Register New User</h4>
+      <form action="" method="POST" class="form-horizontal" id = "register" role="form">
+            <div class="form-group">
+        <label for="current-password" class="control-label col-md-4">Name</label>
+        <div class="col-md-6">
+            <input type="text" class="form-control" id="name" name="name" placeholder="Enter your Name">
+        </div>
+    </div>
+            <div class="form-group">
+        <label for="Address Line 1 " class="control-label col-md-4">Address Line 1</label>
+        <div class="col-md-6">
+            <input type="text" class="form-control" id="address1" name="address1" placeholder="Enter House No, Street">
+        </div>
+    </div>
+
+          <div class="form-group">
+        <label for="Address Line 2 " class="control-label col-md-4">Address Line 2</label>
+        <div class="col-md-6">
+            <input type="text" class="form-control" id="address2" name="address2" placeholder="Enter Area">
+        </div>
+    </div>
+
+        <div class="form-group">
+        <label for="pincode" class="control-label col-md-4">Pin Code</label>
+        <div class="col-md-6">
+            <input type="text" class="form-control" id="pincode" name="pincode"placeholder="Enter Pin Code">
+        </div>
+    </div>
+
+          <div class="form-group">
+        <label for="Landmark" class="control-label col-md-4">Landmark</label>
+        <div class="col-md-6">
+            <input type="text" class="form-control" id="landmark" name="landmark" placeholder="Enter Landmark">
+        </div>
+    </div>
+
+        <div class="form-group">
+        <label for="City" class="control-label col-md-4">City</label>
+        <div class="col-md-6">
+            <input type="text" class="form-control" id="city" name="city" placeholder="Enter City">
+        </div>
+    </div>
+
+         <div class="form-group">
+        <label for="mobno" class="control-label col-md-4">Mobile No.</label>
+        <div class="col-md-6">
+            <input type="text" class="form-control" id="mobno" name="mobno"placeholder="Mobile Number">
+        </div>
+    </div>
+      <div class="form-group">
+        <div class="col-md-offset-4 col-md-2">
+    <input type="submit" class="btn"value="REGISTER">
+    </div>
+  </div>
+</form>
+    </div>
 <body>
    
     
