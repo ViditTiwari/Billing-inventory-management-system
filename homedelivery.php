@@ -7,7 +7,7 @@ include_once 'core/database/config.php';
 <html>
 <head>
    <meta charset="utf-8">
-    <title>Take Away</title>
+    <title>Home Delivery</title>
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/main.css">
     <link href="css/style.css" rel="stylesheet">
