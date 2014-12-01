@@ -1,5 +1,6 @@
 <?php
 include_once 'core/init.php';
+include_once 'core/database/config.php';
 if(isset($_GET['ingriedient']))
 {   
 	$ingr_name=$_GET['ingriedient'];
@@ -12,11 +13,35 @@ if(isset($_GET['item'])&& isset($_GET['price'])&& isset($_GET['category']))
 	$category=$_GET['category'];
 	add_menu_item($item_name,$price,$category);
 }
-if(isset($_GET['category']))
+if(isset($_GET['cat']))
 {   
-	$category=$_GET['category'];
+	$category=$_GET['cat'];
 	add_category($category);
 }
+
+function dropdown( $name, array $options, $selected=null )
+{
+    /*** begin the select ***/
+    $dropdown = '<select name="'.$name.'" id="'.$name.'">'."\n";
+
+    $selected = $selected;
+    /*** loop over the options ***/
+    foreach( $options as $key=>$option )
+    {
+        /*** assign a selected value ***/
+        $select = $selected==$key ? ' selected' : null;
+
+        /*** add each option to the dropdown ***/
+        $dropdown .= '<option value="'.$key.'"'.$select.'>'.$option.'</option>'."\n";
+    }
+
+    /*** close the select ***/
+    $dropdown .= '</select>'."\n";
+
+    /*** and return the completed dropdown ***/
+    return $dropdown;
+}
+
 ?>
 <html>
 <head>
@@ -57,6 +82,7 @@ if(isset($_GET['category']))
 </header>
 <body>
   <div class="container">
+   <div class="col-md-4" style="text-align:center">
    <pre>
    <h3>NEW INVENTORY ITEM</h3>
     <form action="" method="get">
@@ -64,23 +90,48 @@ if(isset($_GET['category']))
        <input type="submit" value="submit">
     </form>
 </pre>
-  
+      </div>
+   <div class="col-md-4" style="text-align:center">
    <pre>
    <h3>NEW MENU ITEM</h3>
-    <form action="" method="GET">
+    <form a`ction="" method="GET">
         <input type="text"  placeholder="Dish Name" name ="item" >
         <input type="text"  placeholder="Category" name="category" >
         <input type="number"  placeholder="Price" name="price">
+     <?php
+$name = 'my_dropdown';
+
+$query = mysql_query("SELECT `category` FROM `category`");
+
+
+$result1[]=mysql_fetch_all($query);
+    
+   print_r($result1);
+
+$selected = 1;
+
+echo dropdown( $name, $result1, $selected );
+
+/*foreach($resultSet as $value)
+{
+    echo $value;
+}*/
+
+
+?>
         <input value="submit" type="submit">
     </form>
 </pre>
+      </div>
+   <div class="col-md-4" style="text-align:center">
    <pre>
    <h3>NEW CATEGORY</h3>
     <form action="" method="GET">
-        <input type="text"  placeholder="New Category" name ="category" >
+        <input type="text"  placeholder="New Category" name ="cat" >
         <input value="submit" type="submit">
     </form>
 </pre>
+      </div>
     </div>
     
     

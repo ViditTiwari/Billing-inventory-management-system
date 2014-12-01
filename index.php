@@ -11,6 +11,42 @@ include_once 'core/database/config.php';
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/main.css">
     <link href="css/style.css" rel="stylesheet">
+    <script src="http://code.jquery.com/jquery-1.4.2.min.js"></script> 
+
+<script> 
+ 
+(function ($) {
+  jQuery.expr[':'].Contains = function(a,i,m){
+      return (a.textContent || a.innerText || "").toUpperCase().indexOf(m[3].toUpperCase())>=0;
+  };
+  
+  function listFilter(header, list) {
+    var form = $("<form>").attr({"class":"filterform","action":"#"}),
+        input = $("<input>").attr({"class":"filterinput","type":"text"});
+    $(form).append(input).appendTo(header);
+ 
+    $(input)
+      .change( function () {
+        var filter = $(this).val();
+        if(filter) {
+          $(list).find(".product-content:not(:Contains(" + filter + "))").parent().slideUp();
+          $(list).find(".product-content:Contains(" + filter + ")").parent().slideDown();
+        } else {
+          $(list).find(".entry").slideDown();
+        }
+        return false;
+      })
+    .keyup( function () {
+        $(this).change();
+    });
+  }
+ 
+  $(function () {
+    listFilter($("#header"), $("#list"));
+  });
+}(jQuery));
+ 
+  </script>
 
 </head>
 <header>
@@ -110,8 +146,18 @@ include_once 'core/database/config.php';
            if ($results) { 
             //output results from database
             $ctr1=1;
+               echo '<div id="wrap"> ';  
+               echo '<h1 id="header"><form class="filterform" action="#"></form></h1>' ;
+               echo '<div id="list">' ;
+               
+               
             while($obj = $results->fetch_object())
+                
           { 
+                 
+                
+    
+               echo '<div class="entry">';
             if($obj->category_id == $ctr1)
             { $sql = "SELECT category FROM category WHERE category_id='$ctr1'";  
               $result = $mysqli->query($sql);
@@ -120,6 +166,7 @@ include_once 'core/database/config.php';
               echo '<h3 id='.$row["category"].'>'.$row["category"].'</h3>';
               $ctr1++;
             }
+                
             
             echo '<div class="product">'; 
             echo '<form method="post" action="cart_update.php">';
@@ -133,17 +180,25 @@ include_once 'core/database/config.php';
             echo '<button class="btn btn-success btn-xs">Add To Cart</button>';
             echo '</span>';
             echo '<input type="hidden" name="item_code" value="'.$obj->ID.'" />';
-            echo '<input type="hidden" name="table_no" value="'.$table_no.'" />';
+            echo '<input type="hidden" name="table_no" value="table 1" />';
             echo '<input type="hidden" name="type" value="add" />';
             echo '<input type="hidden" name="return_url" value="'.$current_url.'" />';
             echo '</form>';
             echo '</div>';
+            echo '</div>';
+            
         }
     
         }
+            echo '</div>';
+            echo '</div>';
+            
        ?>
       </div>
       </div>
+      
+      
+            
     <div class="col-md-2">
       <div class="shopping-cart">
           <h2>Your KOT Cart</h2>
