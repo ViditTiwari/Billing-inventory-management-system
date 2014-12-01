@@ -7,7 +7,7 @@ include_once 'core/database/config.php';
 <html>
 <head>
    <meta charset="utf-8">
-    <title>Take Away</title>
+    <title>Home Delivery</title>
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/main.css">
     <link href="css/style.css" rel="stylesheet">
@@ -54,7 +54,7 @@ include_once 'core/database/config.php';
     
     <div class="col-md-2"></div>
     <div class="col-md-8" >
-      <input type="text" class="form-control" id="inputNo" placeholder="Search Mobile Number">
+      <input type="text" class="form-control" id="inputNo" placeholder="Search Mobile Number" required>
     </div>
 
   </div>
@@ -65,15 +65,15 @@ include_once 'core/database/config.php';
       <h4>Register New User</h4>
       <form action="" method="POST" class="form-horizontal" id = "register" role="form">
             <div class="form-group">
-        <label for="current-password" class="control-label col-md-4">Name</label>
+        <label for="current-password" class="control-label col-md-4">Name*</label>
         <div class="col-md-6">
-            <input type="text" class="form-control" id="name" name="name" placeholder="Enter your Name">
+            <input type="text" class="form-control" id="name" name="name" placeholder="Enter your Name" required>
         </div>
     </div>
             <div class="form-group">
-        <label for="Address Line 1 " class="control-label col-md-4">Address Line 1</label>
+        <label for="Address Line 1 " class="control-label col-md-4">Address Line 1*</label>
         <div class="col-md-6">
-            <input type="text" class="form-control" id="address1" name="address1" placeholder="Enter House No, Street">
+            <input type="text" class="form-control" id="address1" name="address1" placeholder="Enter House No, Street" required>
         </div>
     </div>
 
@@ -85,9 +85,9 @@ include_once 'core/database/config.php';
     </div>
 
         <div class="form-group">
-        <label for="pincode" class="control-label col-md-4">Pin Code</label>
+        <label for="pincode" class="control-label col-md-4">Pin Code*</label>
         <div class="col-md-6">
-            <input type="text" class="form-control" id="pincode" name="pincode"placeholder="Enter Pin Code">
+            <input type="text" class="form-control" id="pincode" name="pincode"placeholder="Enter Pin Code" required>
         </div>
     </div>
 
@@ -99,16 +99,16 @@ include_once 'core/database/config.php';
     </div>
 
         <div class="form-group">
-        <label for="City" class="control-label col-md-4">City</label>
+        <label for="City" class="control-label col-md-4">City*</label>
         <div class="col-md-6">
-            <input type="text" class="form-control" id="city" name="city" placeholder="Enter City">
+            <input type="text" class="form-control" id="city" name="city" placeholder="Enter City" required>
         </div>
     </div>
 
          <div class="form-group">
-        <label for="mobno" class="control-label col-md-4">Mobile No.</label>
+        <label for="mobno" class="control-label col-md-4">Mobile No.*</label>
         <div class="col-md-6">
-            <input type="text" class="form-control" id="mobno" name="mobno"placeholder="Mobile Number">
+            <input type="text" class="form-control" id="mobno" name="mobno"placeholder="Mobile Number" required>
         </div>
     </div>
       <div class="form-group">
