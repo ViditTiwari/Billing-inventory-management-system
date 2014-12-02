@@ -101,12 +101,18 @@ function dropdown( $name, array $options, $selected=null )
      <?php
 $name = 'my_dropdown';
 
-$query = mysql_query("SELECT `category` FROM `category`");
+$results = $mysqli->query("SELECT `category` FROM `category`");
 
 
-$result1[]=mysql_fetch_all($query);
-    
-   print_r($result1);
+if ($results) { 
+            //output results from database
+            while($obj = $results->fetch_object())
+             { $a = $obj->category;
+              $result1[]=$a;
+              
+            }
+               }
+  // print_r($result1);
 
 $selected = 1;
 
