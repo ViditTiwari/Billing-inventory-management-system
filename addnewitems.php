@@ -6,13 +6,15 @@ if(isset($_GET['ingriedient']))
 	$ingr_name=$_GET['ingriedient'];
 	add_new_ingr_item($ingr_name);
 }
-if(isset($_GET['item'])&& isset($_GET['price'])&& isset($_GET['category']))
+if(isset($_GET['item'])&& isset($_GET['price'])&& isset($_GET['category']) && isset($_GET['chicken']))
 {   
 	$item_name=$_GET['item'];
 	$price=$_GET['price'];
 	$category=$_GET['category'];
-	add_menu_item($item_name,$price,$category);
+    $chicken=$_GET['chicken'];
+	add_menu_item($item_name,$price,$category,$chicken);
 }
+
 if(isset($_GET['cat']))
 {   
 	$category=$_GET['cat'];
@@ -32,7 +34,9 @@ function dropdown( $name, array $options, $selected=null )
         $select = $selected==$key ? ' selected' : null;
 
         /*** add each option to the dropdown ***/
-        $dropdown .= '<option value="'.$key.'"'.$select.'>'.$option.'</option>'."\n";
+        $dropdown .= '<option value="'.$option.'"'.$select.'>'.$option.'</option>'."\n";
+        
+
     }
 
     /*** close the select ***/
@@ -87,6 +91,7 @@ function dropdown( $name, array $options, $selected=null )
    <h3>NEW INVENTORY ITEM</h3>
     <form action="" method="get">
        <input type="text" placeholder="Ingiedient name" name="ingriedient">
+       
        <input type="submit" value="submit">
     </form>
 </pre>
@@ -94,12 +99,11 @@ function dropdown( $name, array $options, $selected=null )
    <div class="col-md-4" style="text-align:center">
    <pre>
    <h3>NEW MENU ITEM</h3>
-    <form a`ction="" method="GET">
+    <form action="" method="GET">
         <input type="text"  placeholder="Dish Name" name ="item" >
-        <input type="text"  placeholder="Category" name="category" >
         <input type="number"  placeholder="Price" name="price">
      <?php
-$name = 'my_dropdown';
+$name = 'category';
 
 $results = $mysqli->query("SELECT `category` FROM `category`");
 
@@ -114,7 +118,7 @@ if ($results) {
                }
   // print_r($result1);
 
-$selected = 1;
+$selected = 0;
 
 echo dropdown( $name, $result1, $selected );
 
@@ -125,6 +129,7 @@ echo dropdown( $name, $result1, $selected );
 
 
 ?>
+       <input type="checkbox" name="chicken" value="1">Chicken
         <input value="submit" type="submit">
     </form>
 </pre>
