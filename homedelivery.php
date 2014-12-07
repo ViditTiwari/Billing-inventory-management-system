@@ -7,7 +7,7 @@ if(isset($_POST['inputNo']))
 
 {
   $_SESSION['inputNo']=$_POST['inputNo'];
-  echo $_SESSION['inputNo'];
+  
   
 }
 if(isset($_SESSION['inputNo']))
@@ -64,8 +64,15 @@ $inputNo = $_SESSION['inputNo'];
             $table_no = 8;
              //current URL of the Page. cart_update.php redirects back to this URL
             $current_url = base64_encode("http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
-            echo '<a href="bill.php?table_no='.$table_no.'&return_url='.$current_url.'&inputNo='.$inputNo.'" class="btn btn-success" >'
-            ?>PRINT BILL</a>
+            if(isset($inputNo))
+            {
+            echo '<a href="bill.php?table_no='.$table_no.'&return_url='.$current_url.'&inputNo='.$inputNo.'" class="btn btn-success" >
+            PRINT BILL</a>';
+            }
+            else
+              echo "Go to user detail page to see this";
+
+            ?>
         </div>
 
         </div>
