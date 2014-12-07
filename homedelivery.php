@@ -42,7 +42,7 @@ $inputNo = $_SESSION['inputNo'];
       <ul class="nav navbar-nav">
         <li><a href="index.php">Dine-in <span class="sr-only">(current)</span></a></li>
         <li><a href="takeaway.php">Take Away</a></li>
-        <li class="active"><a href="homedelivery.php" class="active">Home Delivery</a></li>
+        <li class="active"><a href="user_detail.php" class="active">Home Delivery</a></li>
         <li><a href="addnewitems.php">Add New Items</a></li>    
         <li><a href="inventory.php">Inventory</a></li>    
         
