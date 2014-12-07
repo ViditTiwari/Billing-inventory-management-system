@@ -60,7 +60,7 @@ if(isset($_GET['ingriedient'])&& isset($_GET['init']))
         <?php
 $name = 'ingriedient';
 
-$results = $mysqli->query("SELECT `ingr_name` FROM `item`");
+$results = $mysqli->query("SELECT `ingr_name` FROM `inventory_backup`");
 
 
 if ($results) { 
@@ -95,7 +95,7 @@ echo dropdown( $name, $result1, $selected );
         <?php
 $name = 'ingriedient';
 
-$results = $mysqli->query("SELECT `ingr_name` FROM `item`where `ingr_id`<>1");
+$results = $mysqli->query("SELECT `ingr_name` FROM `inventory_backup`where `ingr_name`<>'chicken'");
 
 
 if ($results) { 
