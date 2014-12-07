@@ -6,12 +6,15 @@ if(isset($_GET['ingriedient']))
 	$ingr_name=$_GET['ingriedient'];
 	add_new_ingr_item($ingr_name);
 }
-if(isset($_GET['item'])&& isset($_GET['price'])&& isset($_GET['category']) && isset($_GET['chicken']))
+if(isset($_GET['item'])&& isset($_GET['price'])&& isset($_GET['category']))
 {   
 	$item_name=$_GET['item'];
 	$price=$_GET['price'];
 	$category=$_GET['category'];
+  if(isset($_GET['chicken']))
     $chicken=$_GET['chicken'];
+  else
+    $chicken=0;
 	add_menu_item($item_name,$price,$category,$chicken);
 }
 
