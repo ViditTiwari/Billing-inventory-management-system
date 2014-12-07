@@ -38,11 +38,14 @@ function add_kot_item($Name,$QTY,$TABLE_NO,$kot_no)
  $BITCH = mysql_query("SELECT ID FROM menu WHERE item_name='$Name'");
     $row = mysql_fetch_row($BITCH);
     $ID= $row[0];
-    
+    $chicken=mysql_query("select chicken from menu where id='$ID'");
+    $chicken=array_first_element($chicken);
+    if($chicken!=0){
+         update_inventory($QTY);
   mysql_query("INSERT INTO kot (ID,QTY,TABLE_NO,kot_no) VALUES ('$ID','$QTY','$TABLE_NO','$kot_no')");
     
 }
-
+}
 function add_to_bill($ID,$QTY,$TABLE_NO,$PRICE,$bill_no)
 {
     $type=1;
@@ -56,7 +59,11 @@ function add_to_bill($ID,$QTY,$TABLE_NO,$PRICE,$bill_no)
         $type=3;
     }
     
-
+   $chicken=mysql_query("select chicken from menu where id='$ID'");
+    $chicken=array_first_element($chicken);
+    if($chicken!=0){
+         update_inventory($QTY);
+    }
     mysql_query("INSERT INTO `bill`(ID,QTY,TABLE_NO,price,bill_no,type) Values('$ID','$QTY','$TABLE_NO','$PRICE','$bill_no','$type')");
 
     
@@ -92,22 +99,48 @@ function delete_all_kot($table_no)
 {
     mysql_query("DELETE FROM kot WHERE table_no = '$table_no'");
 }
-//**********BILL*********
+//**********dropdown*********
 
+function dropdown( $name, array $options, $selected=null )
+{
+    /*** begin the select ***/
+    $dropdown = '<select name="'.$name.'" id="'.$name.'">'."\n";
 
+    $selected = $selected;
+    /*** loop over the options ***/
+    foreach( $options as $key=>$option )
+    {
+        /*** assign a selected value ***/
+        $select = $selected==$key ? ' selected' : null;
+
+        /*** add each option to the dropdown ***/
+        $dropdown .= '<option value="'.$option.'"'.$select.'>'.$option.'</option>'."\n";
+        
+
+    }
+
+    /*** close the select ***/
+    $dropdown .= '</select>'."\n";
+
+    /*** and return the completed dropdown ***/
+    return $dropdown;
+}
 
 //*********INVENTORY********
 
 function add_inventory_item_init($ingr_name,$init)
 {
+    mysql_query("UPDATE `inventory_backup` SET `init_qty`=init_qty+'$init',date=CURRENT_DATE() WHERE `ingr_name`='$ingr_name'");
   $ingr_id= get_ingr_id($ingr_name);
    mysql_query("INSERT INTO inventory (ingr_id,init_qty,date) VALUES ('$ingr_id','$init',CURRENT_DATE())");
+    
 }
 
 
 function get_ingr_id($ingr_name)
 {
-    echo "$ingr_name";
+    
+    //echo "$ingr_name";
  $result = mysql_query("SELECT ingr_id FROM item WHERE ingr_name='$ingr_name'");
 
  $row = mysql_fetch_row($result);
@@ -119,6 +152,7 @@ function get_ingr_id($ingr_name)
 }
 function add_inventory_item_final($ingr_name,$final)
 {
+    mysql_query("UPDATE `inventory_backup` SET `current_qty`=init_qty-'$final',last_updated=CURRENT_DATE() WHERE `ingr_name`='$ingr_name'");
     $ingr_id= get_ingr_id($ingr_name);
 mysql_query("UPDATE `inventory` SET `final_qty`='$final' WHERE date =CURRENT_DATE() AND `ingr_id`='$ingr_id'");   //&& ingr_id=$ingr_id
     $BITCH = mysql_query("SELECT init_qty-final_qty FROM inventory WHERE date = CURRENT_DATE()");
@@ -130,10 +164,12 @@ mysql_query("UPDATE `inventory` SET `final_qty`='$final' WHERE date =CURRENT_DAT
 function add_new_ingr_item($ingr_name)
 {
  mysql_query("INSERT INTO item (ingr_name) VALUES ('$ingr_name')");  
+    mysql_query("INSERT INTO `inventory_backup`(`ingr_name`) VALUES ('$ingr_name')");
 }
+
 function update_inventory($qty)
 {
-    mysql_query("UPDATE `inventory` SET `final_qty`=`init_qty`-'$qty'  WHERE date =CURRENT_DATE() and `ingr_id`=1");
+    mysql_query("UPDATE `inventory_backup` SET `current_qty`=`init_qty`-'$qty' ,last_updated=CURRENT_DATE() WHERE `ingr_name`='chicken'");
 }
 
 function add_user_detail($name, $address1, $address2, $pincode,$city,$landmark,$mobno)
