@@ -7,12 +7,12 @@ function array_first_element($var)
  	return $row [0]; 
 }
 }
-function add_menu_item($item_name,$price,$category)
+function add_menu_item($item_name,$price,$category,$chicken)
 
 { $category_id = get_category_id($category);
 	
 
-  mysql_query("INSERT INTO menu (item_name, price, category_id) VALUES ('$item_name', '$price', '$category_id')");
+  mysql_query("INSERT INTO menu (item_name, price, category_id) VALUES ('$item_name', '$price', '$category_id','$chicken')");
 }
 
 function get_category_id($category)
@@ -117,8 +117,8 @@ function get_ingr_id($ingr_name)
 }
 function add_inventory_item_final($ingr_name,$final)
 {
-    
-mysql_query("UPDATE `inventory` SET `final_qty`='$final' WHERE date =CURRENT_DATE()");   //&& ingr_id=$ingr_id
+    $ingr_id= get_ingr_id($ingr_name);
+mysql_query("UPDATE `inventory` SET `final_qty`='$final' WHERE date =CURRENT_DATE() AND `ingr_id`='$ingr_id'");   //&& ingr_id=$ingr_id
     $BITCH = mysql_query("SELECT init_qty-final_qty FROM inventory WHERE date = CURRENT_DATE()");
     $row = mysql_fetch_row($BITCH);
    $ID= $row[0];
@@ -129,7 +129,10 @@ function add_new_ingr_item($ingr_name)
 {
  mysql_query("INSERT INTO item (ingr_name) VALUES ('$ingr_name')");  
 }
+function update_inventory($qty)
+{
+    mysql_query("UPDATE `inventory` SET `final_qty`=`init_qty`-'$qty'  WHERE date =CURRENT_DATE() and `ingr_id`=1");
+}
 
-//*******LOGIN********
 ?>
 
