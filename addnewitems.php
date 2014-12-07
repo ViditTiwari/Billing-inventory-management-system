@@ -24,30 +24,7 @@ if(isset($_GET['cat']))
 	add_category($category);
 }
 
-function dropdown( $name, array $options, $selected=null )
-{
-    /*** begin the select ***/
-    $dropdown = '<select name="'.$name.'" id="'.$name.'">'."\n";
 
-    $selected = $selected;
-    /*** loop over the options ***/
-    foreach( $options as $key=>$option )
-    {
-        /*** assign a selected value ***/
-        $select = $selected==$key ? ' selected' : null;
-
-        /*** add each option to the dropdown ***/
-        $dropdown .= '<option value="'.$option.'"'.$select.'>'.$option.'</option>'."\n";
-        
-
-    }
-
-    /*** close the select ***/
-    $dropdown .= '</select>'."\n";
-
-    /*** and return the completed dropdown ***/
-    return $dropdown;
-}
 
 ?>
 <html>
@@ -105,6 +82,11 @@ function dropdown( $name, array $options, $selected=null )
     <form action="" method="GET">
         <input type="text"  placeholder="Dish Name" name ="item" >
         <input type="number"  placeholder="Price" name="price">
+        <select name="chicken">
+  <option value="1">Non-veg</option>
+  <option value="0.5">Half-plate Non-veg</option>
+  <option value="0">Veg</option>
+</select>
      <?php
 $name = 'category';
 
@@ -132,7 +114,8 @@ echo dropdown( $name, $result1, $selected );
 
 
 ?>
-       <input type="checkbox" name="chicken" value="1">Chicken
+      
+    <!--   <input type="checkbox" name="chicken" value="1">Chicken-->
         <input value="submit" type="submit">
     </form>
 </pre>
