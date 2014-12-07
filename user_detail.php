@@ -81,11 +81,42 @@ if(isset($_POST['name'])&& isset($_POST['address1'])&& isset($_POST['pincode'])&
 
       $inputNo=$_POST['inputNo'];
 
-      if(searchNo($inputNo)==0)
-      {
-        echo "hurray";
+      if(searchNo($inputNo)===0)
+      { echo '<br><br>';
+        echo '<div class="panel panel-default">';
+        echo '<div class="panel-body" style="text-align:center">';
+        echo '<span class ="text-danger"><strong>Mobile No not found in database</strong></span>';
+        echo '</div>';
+        echo '</div>';
       }
-      
+      else
+      { 
+        echo '<br><br>';
+        echo '<div class="panel panel-default">';
+        echo '<div class="panel-body" style="text-align:center">';
+        $results = $mysqli->query("SELECT * FROM user_detail WHERE mob_no='$inputNo'");
+           if ($results) { 
+            //output results from database
+           while($obj = $results->fetch_object())
+           { echo '<span class ="text-success"><strong>User found</strong></span><br><br>';
+             echo '<span class ="text-success"><strong>'.$obj->Name.'</strong></span><br>';
+             echo '<span class ="text-success"><strong>'.$obj->addr_1.'</strong></span><br>';
+             echo '<span class ="text-success"><strong>'.$obj->addr_2.'</strong></span><br>';
+             echo '<span class ="text-success"><strong>'.$obj->pincode.'</strong></span><br>';
+             echo '<span class ="text-success"><strong>'.$obj->landmark.'</strong></span><br>';
+             echo '<span class ="text-success"><strong>'.$obj->city.'</strong></span><br>';
+             echo '<span class ="text-success"><strong>'.$obj->mob_no.'</strong></span><br>';
+
+             echo'<form action="homedelivery.php" method="POST" class="form-horizontal" id = "user" role="form">';
+             echo'<input type="hidden" class="form-control" id="inputNo" name="inputNo" value = '.$inputNo.'>';
+             echo'<input type="submit" class="btn btn-success"  value = "Proceed to Menu">';
+             echo'</form>';
+             
+           }
+          }
+        echo '</div>';
+        echo '</div>';
+      }
 
       }
 

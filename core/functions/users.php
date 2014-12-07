@@ -180,10 +180,15 @@ function add_user_detail($name, $address1, $address2, $pincode,$city,$landmark,$
 
 function searchNo($inputNo)
 {
-  if (mysql_num_rows(mysql_query("SELECT * FROM user_detail WHERE mob_no='$inputNo'"))==-1)
+  if (!(mysql_num_rows(mysql_query("SELECT * FROM user_detail WHERE mob_no='$inputNo'"))))
+    
     return 0;
 
-}
 
+}
+function add_to_user_order($inputNo,$bill_no)
+{
+  mysql_query("INSERT INTO user_order (mob_no,bill_no) VALUES ('$inputNo','$bill_no')");
+}
 ?>
 

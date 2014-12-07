@@ -3,6 +3,16 @@ session_start();
 
 include_once 'core/database/config.php';
 
+if(isset($_POST['inputNo']))
+
+{
+  $_SESSION['inputNo']=$_POST['inputNo'];
+  echo $_SESSION['inputNo'];
+  
+}
+if(isset($_SESSION['inputNo']))
+$inputNo = $_SESSION['inputNo'];
+
 ?>
 <html>
 <head>
@@ -32,7 +42,7 @@ include_once 'core/database/config.php';
       <ul class="nav navbar-nav">
         <li><a href="index.php">Dine-in <span class="sr-only">(current)</span></a></li>
         <li><a href="takeaway.php">Take Away</a></li>
-        <li class="active"><a href="homedelivery.php">Home Delivery</a></li>
+        <li class="active"><a href="homedelivery.php" class="active">Home Delivery</a></li>
         <li><a href="addnewitems.php">Add New Items</a></li>    
         <li><a href="inventory.php">Inventory</a></li>    
         
@@ -43,84 +53,137 @@ include_once 'core/database/config.php';
   </div><!-- /.container-fluid -->
 </nav>
 </header>
-
-<div class="container">
-  
-  <div class="col-md-6" style="text-align:center">
-    <h4>Search User by Mobile Number</h4>
-
-
-    <div class="form-group">
-    
-    <div class="col-md-2"></div>
-    <div class="col-md-8" >
-      <input type="text" class="form-control" id="inputNo" placeholder="Search Mobile Number" required>
-    </div>
-
-  </div>
-
-  </div>
-    
-    <div class="col-md-6" style="text-align:center">
-      <h4>Register New User</h4>
-      <form action="" method="POST" class="form-horizontal" id = "register" role="form">
-            <div class="form-group">
-        <label for="current-password" class="control-label col-md-4">Name*</label>
-        <div class="col-md-6">
-            <input type="text" class="form-control" id="name" name="name" placeholder="Enter your Name" required>
-        </div>
-    </div>
-            <div class="form-group">
-        <label for="Address Line 1 " class="control-label col-md-4">Address Line 1*</label>
-        <div class="col-md-6">
-            <input type="text" class="form-control" id="address1" name="address1" placeholder="Enter House No, Street" required>
-        </div>
-    </div>
-
-          <div class="form-group">
-        <label for="Address Line 2 " class="control-label col-md-4">Address Line 2</label>
-        <div class="col-md-6">
-            <input type="text" class="form-control" id="address2" name="address2" placeholder="Enter Area">
-        </div>
-    </div>
-
-        <div class="form-group">
-        <label for="pincode" class="control-label col-md-4">Pin Code*</label>
-        <div class="col-md-6">
-            <input type="text" class="form-control" id="pincode" name="pincode"placeholder="Enter Pin Code" required>
-        </div>
-    </div>
-
-          <div class="form-group">
-        <label for="Landmark" class="control-label col-md-4">Landmark</label>
-        <div class="col-md-6">
-            <input type="text" class="form-control" id="landmark" name="landmark" placeholder="Enter Landmark">
-        </div>
-    </div>
-
-        <div class="form-group">
-        <label for="City" class="control-label col-md-4">City*</label>
-        <div class="col-md-6">
-            <input type="text" class="form-control" id="city" name="city" placeholder="Enter City" required>
-        </div>
-    </div>
-
-         <div class="form-group">
-        <label for="mobno" class="control-label col-md-4">Mobile No.*</label>
-        <div class="col-md-6">
-            <input type="text" class="form-control" id="mobno" name="mobno"placeholder="Mobile Number" required>
-        </div>
-    </div>
-      <div class="form-group">
-        <div class="col-md-offset-4 col-md-2">
-    <input type="submit" class="btn"value="REGISTER">
-    </div>
-  </div>
-</form>
-    </div>
 <body>
    
+     <div class="container">
+     
+        <div class="panel panel-default">
+         <div class="panel-body" style="text-align:center">
+            <strong>HOME DELIVERY</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <?php 
+            $table_no = 8;
+             //current URL of the Page. cart_update.php redirects back to this URL
+            $current_url = base64_encode("http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
+            echo '<a href="bill.php?table_no='.$table_no.'&return_url='.$current_url.'&inputNo='.$inputNo.'" class="btn btn-success" >'
+            ?>PRINT BILL</a>
+        </div>
+
+        </div>
+        
+       <div class="col-md-12 col-xs-12">
+          <div class="col-md-3" id="myScrollspy">
+            <ul class="nav nav-tabs nav-stacked affix-top" data-spy="affix" data-offset-top="25">
+              <?php
+            $results = $mysqli->query("SELECT * FROM category");
+           if ($results) { 
+            //output results from database
+            $ctr=0;
+            while($obj = $results->fetch_object())
+          {     if($ctr == 0)
+                echo '<li class="active"><a href="#'.$obj->category.'">'.$obj->category.'</a></li>';
+                 
+                else
+                echo '<li><a href="#'.$obj->category.'">'.$obj->category.'</a></li>';
+
+                $ctr++;
+           }
+         }
+         ?>
+            </ul>
+        </div>
+
+
+          <div class="col-md-6">
+             <div class="panel panel1 panel-default">
+         <div class="panel-body1" style="text-align:center">
+           MENU
+        </div>
+      </div>
+          <div class="products">
+          <?php
+          
+           
+
+          
     
+           $results = $mysqli->query("SELECT * FROM menu");
+           if ($results) { 
+            //output results from database
+            $ctr1=1;
+            while($obj = $results->fetch_object())
+          { 
+            if($obj->category_id == $ctr1)
+            { $sql = "SELECT category FROM category WHERE category_id='$ctr1'";  
+              $result = $mysqli->query($sql);
+              $row = $result->fetch_assoc();
+              
+              echo '<h3 id='.$row["category"].'>'.$row["category"].'</h3>';
+              $ctr1++;
+            }
+            
+            echo '<div class="product">'; 
+            echo '<form method="post" action="cart_update.php">';
+            
+            echo '<span class="product-content">'.$obj->item_name ;
+            echo '</span>';
+            
+            echo '<span class="product-info">';
+            echo 'Price '.$currency.$obj->price.' | ';
+            echo 'Qty <input type="text" name="product_qty" class = "product_qty" value="1" size="3" />&nbsp;&nbsp;';
+            echo '<button class="btn btn-success btn-xs">Add To Cart</button>';
+            echo '</span>';
+            echo '<input type="hidden" name="item_code" value="'.$obj->ID.'" />';
+            echo '<input type="hidden" name="table_no" value="'.$table_no.'" />';
+            echo '<input type="hidden" name="type" value="add" />';
+            echo '<input type="hidden" name="return_url" value="'.$current_url.'" />';
+            echo '</form>';
+            echo '</div>';
+        }
+    
+        }
+       ?>
+      </div>
+      </div>
+    <div class="col-md-3">
+      <div class="shopping-cart">
+          <h2>Home Delivery Billing Cart</h2>
+          <?php
+
+          if(isset($_SESSION["products"]))
+          {
+              $total = 0;
+              echo '<ol>';
+              foreach ($_SESSION["products"] as $cart_itm)
+              {   if($cart_itm["table_no"] == $table_no)
+                 { echo '<li class="cart-itm">';
+                  echo '<span class="remove-itm"><a href="cart_update.php?removep='.$cart_itm["code"].'&return_url='.$current_url.'&table_no='.$cart_itm["table_no"].'">&times;</a></span>';
+                  echo '<h3>'.$cart_itm["name"].'</h3>';
+                  
+                  echo '<div class="p-qty">Qty : '.$cart_itm["qty"].'</div>';
+                  echo '<div class="p-price">Price :'.$currency.$cart_itm["price"].'</div>';
+                  echo '</li>';
+                  $subtotal = ($cart_itm["price"]*$cart_itm["qty"]);
+                  $total = ($total + $subtotal);
+                }
+              }
+              echo '</ol>';
+              echo "<strong>Total : $currency $total</strong>";
+              echo '<br>';
+              echo '<div class="padding-class"></div>';
+              
+              echo '<span class="empty-cart"><a href="cart_update.php?emptycart=1&return_url='.$current_url.'&table_no='.$table_no.'" class= "btn btn-danger btn-xs">Empty Cart</a></span>';
+          }else{
+              echo 'Your Cart is empty';
+          }
+          ?>
+          </div>
+      </div>
+
+
+    </div>
+
+    
+    </div>
     
 
 
