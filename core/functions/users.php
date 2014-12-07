@@ -12,7 +12,7 @@ function add_menu_item($item_name,$price,$category,$chicken)
 { $category_id = get_category_id($category);
 	
 
-  mysql_query("INSERT INTO menu (item_name, price, category_id) VALUES ('$item_name', '$price', '$category_id','$chicken')");
+  mysql_query("INSERT INTO menu (item_name, price, category_id,chicken) VALUES ('$item_name', '$price', '$category_id','$chicken')");
 }
 
 function get_category_id($category)
@@ -45,6 +45,8 @@ function add_kot_item($Name,$QTY,$TABLE_NO,$kot_no)
 
 function add_to_bill($ID,$QTY,$TABLE_NO,$PRICE,$bill_no)
 {
+    $type=1;
+
     if($TABLE_NO==7)
     { 
         $type=2;
@@ -132,6 +134,19 @@ function add_new_ingr_item($ingr_name)
 function update_inventory($qty)
 {
     mysql_query("UPDATE `inventory` SET `final_qty`=`init_qty`-'$qty'  WHERE date =CURRENT_DATE() and `ingr_id`=1");
+}
+
+function add_user_detail($name, $address1, $address2, $pincode,$city,$landmark,$mobno)
+{  
+  
+   mysql_query("INSERT INTO user_detail (Name,addr_1,addr_2,pincode,landmark,city,mob_no) VALUES ('$name','$address1','$address2','$pincode','$landmark','$city','$mobno')");
+}
+
+function searchNo($inputNo)
+{
+  if (mysql_num_rows(mysql_query("SELECT * FROM user_detail WHERE mob_no='$inputNo'"))==-1)
+    return 0;
+
 }
 
 ?>
