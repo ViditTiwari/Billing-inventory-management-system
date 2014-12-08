@@ -127,10 +127,15 @@ function dropdown( $name, array $options, $selected=null )
 //*********INVENTORY********
 
 function add_inventory_item_init($ingr_name,$init)
+    
 {
+     $ingr_id= get_ingr_id($ingr_name);
+    
+   mysql_query("INSERT INTO inventory_b(ingr_id, qty_used, `from`) SELECT ingr_id, init_qty-current_qty, date FROM inventory_backup where ingr_name='$ingr_name'");
+    
     mysql_query("UPDATE `inventory_backup` SET `init_qty`=init_qty+'$init',date=CURRENT_DATE() WHERE `ingr_name`='$ingr_name'");
-  $ingr_id= get_ingr_id($ingr_name);
-   mysql_query("INSERT INTO inventory (ingr_id,init_qty,date) VALUES ('$ingr_id','$init',CURRENT_DATE())");
+    
+ 
     
 }
 
