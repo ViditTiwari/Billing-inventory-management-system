@@ -48,6 +48,8 @@ function add_kot_item($Name,$QTY,$TABLE_NO,$kot_no)
 }
 function add_to_bill($ID,$QTY,$TABLE_NO,$PRICE,$bill_no)
 {
+    $type=1;
+
     if($TABLE_NO==7)
     { 
         $type=2;
@@ -175,5 +177,23 @@ function update_inventory($qty)
     mysql_query("UPDATE `inventory_backup` SET `current_qty`=`init_qty`-'$qty' ,last_updated=CURRENT_DATE() WHERE `ingr_name`='chicken'");
 }
 
+function add_user_detail($name, $address1, $address2, $pincode,$city,$landmark,$mobno)
+{  
+  
+   mysql_query("INSERT INTO user_detail (Name,addr_1,addr_2,pincode,landmark,city,mob_no) VALUES ('$name','$address1','$address2','$pincode','$landmark','$city','$mobno')");
+}
+
+function searchNo($inputNo)
+{
+  if (!(mysql_num_rows(mysql_query("SELECT * FROM user_detail WHERE mob_no='$inputNo'"))))
+    
+    return 0;
+
+
+}
+function add_to_user_order($inputNo,$bill_no)
+{
+  mysql_query("INSERT INTO user_order (mob_no,bill_no) VALUES ('$inputNo','$bill_no')");
+}
 ?>
 

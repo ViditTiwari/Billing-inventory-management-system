@@ -68,7 +68,7 @@ include_once 'core/database/config.php';
       <ul class="nav navbar-nav">
         <li class="active"><a href="index.php">Dine-in <span class="sr-only">(current)</span></a></li>
         <li><a href="takeaway.php">Take Away</a></li>
-        <li><a href="homedelivery.php">Home Delivery</a></li>
+        <li><a href="user_detail.php">Home Delivery</a></li>
         <li><a href="addnewitems.php">Add New Items</a></li>    
         <li><a href="inventory.php">Inventory</a></li>    
         

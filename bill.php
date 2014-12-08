@@ -6,6 +6,8 @@ include_once 'core/database/config.php';
 include_once 'core/init.php';
 
 
+$inputNo = $_GET['inputNo'];
+
 
 if(isset($_SESSION["products"]))
           {  $table_no = $_GET["table_no"];
@@ -38,7 +40,13 @@ if(isset($_SESSION["products"]))
                         
                         }
                    }
+
               }
+              if($table_no==8)
+                   { 
+                    add_to_user_order($inputNo, $bill_no);
+                   }
+                   unset($_SESSION['inputNo']);
                 $bill_no++;
                mysql_query("UPDATE `present_bill` SET `bill_no`='$bill_no'"); 
             
