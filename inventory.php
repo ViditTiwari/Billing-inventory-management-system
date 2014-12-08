@@ -45,8 +45,8 @@ if(isset($_GET['ingriedient'])&& isset($_GET['init']))
         <li><a href="addnewitems.php">Add New Items</a></li>    
         <li class="active"><a href="inventory.php">Inventory</a></li>    
         
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="login.php">Login/out</a></li></ul>
+       
+         
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
