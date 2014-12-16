@@ -135,7 +135,7 @@ function add_inventory_item_init($ingr_name,$init)
     
    mysql_query("INSERT INTO inventory_b(ingr_id, qty_used, `from`) SELECT ingr_id, init_qty-current_qty, date FROM inventory_backup where ingr_name='$ingr_name'");
     
-    mysql_query("UPDATE `inventory_backup` SET `init_qty`=init_qty+'$init',date=CURRENT_DATE() WHERE `ingr_name`='$ingr_name'");
+    mysql_query("UPDATE `inventory_backup` SET `init_qty`=current_qty+'$init',date=CURRENT_DATE() WHERE `ingr_name`='$ingr_name'");
     
  
     
@@ -144,37 +144,38 @@ function add_inventory_item_init($ingr_name,$init)
 
 function get_ingr_id($ingr_name)
 {
-    
-    //echo "$ingr_name";
  $result = mysql_query("SELECT ingr_id FROM item WHERE ingr_name='$ingr_name'");
 
- $row = mysql_fetch_row($result);
- if($row[0])
- {  
- 	return $row[0];
- }
+     $row = mysql_fetch_row($result);
+     if($row[0])
+     {  
+        return $row[0];
+     }
 
 }
 function add_inventory_item_final($ingr_name,$final)
 {
-    mysql_query("UPDATE `inventory_backup` SET `current_qty`=init_qty-'$final',last_updated=CURRENT_DATE() WHERE `ingr_name`='$ingr_name'");
     $ingr_id= get_ingr_id($ingr_name);
-mysql_query("UPDATE `inventory` SET `final_qty`='$final' WHERE date =CURRENT_DATE() AND `ingr_id`='$ingr_id'");   //&& ingr_id=$ingr_id
-    $BITCH = mysql_query("SELECT init_qty-final_qty FROM inventory WHERE date = CURRENT_DATE()");
-    $row = mysql_fetch_row($BITCH);
-   $ID= $row[0];
-    echo "remaining quantity = "+$ID;
+   
+        mysql_query("UPDATE `inventory_backup` SET `current_qty`='$final',last_updated=CURRENT_DATE() WHERE `ingr_name`='$ingr_name'");
+    
 }
 
 function add_new_ingr_item($ingr_name)
 {
- mysql_query("INSERT INTO item (ingr_name) VALUES ('$ingr_name')");  
     mysql_query("INSERT INTO `inventory_backup`(`ingr_name`) VALUES ('$ingr_name')");
 }
 
 function update_inventory($qty)
 {
-    mysql_query("UPDATE `inventory_backup` SET `current_qty`=`init_qty`-'$qty' ,last_updated=CURRENT_DATE() WHERE `ingr_name`='chicken'");
+    $check=mysql_query("SELECT `current_qty` FROM `inventory_backup` WHERE `ingr_name`='chicken'");
+    $check=array_first_element($check);
+    echo $check;
+   // if($check==NULL)
+    //{
+        mysql_query("UPDATE `inventory_backup` SET `current_qty`=current_qty-'$qty',last_updated=CURRENT_DATE() WHERE `ingr_name`='chicken'");
+    
+    
 }
 
 function add_user_detail($name, $address1, $address2, $pincode,$city,$landmark,$mobno)

@@ -5,7 +5,6 @@ if(isset($_GET['ingriedient'])&& isset($_GET['init']))
 {   
 	$ingr_name=$_GET['ingriedient'];
 	$init=$_GET['init'];
-    echo "bitch";
 	add_inventory_item_init($ingr_name,$init);
 }
   if(isset($_GET['ingriedient'])&& isset($_GET['final'])) 
@@ -84,7 +83,7 @@ echo dropdown( $name, $result1, $selected );
 
 
 ?>
-         <input type="number" placeholder="Initial quantity" name="init"> <input type="submit" value="submit">
+         <input type="number" placeholder="enter added quantity" name="init"> <input type="submit" value="submit">
         </form>
         </pre>
         </div>
@@ -119,27 +118,12 @@ echo dropdown( $name, $result2, $selected );
 
 
 ?>
-     <input type="number" placeholder="final quantity" name="final"> <input type="submit" value="submit">
+     <input type="number" placeholder="enter available qty" name="final"> <input type="submit" value="submit">
         </form> 
         </pre>
         </div>
         <div class="container">
             <?php
-
-/*echo '<h3>Inventory</h3>';
-	$result3 = mysql_query('SHOW COLUMNS FROM inventory') or die('cannot show columns from ');
-	if(mysql_num_rows($result3)) {
-		echo '<table cellpadding="0" cellspacing="0" class="db-table">';
-		echo '<tr><th>Field</th><th>Type</th><th>Null</th><th>Key</th><th>Default<th>Extra</th></tr>';
-		while($row2 = mysql_fetch_row($result3)) {
-			echo '<tr>';
-			foreach($row2 as $key=>$value) {
-				echo '<td>',$value,'</td>';
-			}
-			echo '</tr>';
-		}
-		echo '</table><br />';
-	}*/
 
 $query = "SELECT * FROM inventory_backup"; 
 $result = mysql_query($query);
