@@ -13,7 +13,40 @@ include_once 'core/database/config.php';
     <link href="css/style.css" rel="stylesheet">
     <script src="http://code.jquery.com/jquery-1.4.2.min.js"></script> 
 
-
+<script> 
+ 
+(function ($) {
+  jQuery.expr[':'].Contains = function(a,i,m){
+      return (a.textContent || a.innerText || "").toUpperCase().indexOf(m[3].toUpperCase())>=0;
+  };
+  
+  function listFilter(header, list) {
+    var form = $("<form>").attr({"class":"filterform","action":"#"}),
+        input = $("<input>").attr({"class":"filterinput","type":"text"});
+    $(form).append(input).appendTo(header);
+ 
+    $(input)
+      .change( function () {
+        var filter = $(this).val();
+        if(filter) {
+          $(list).find(".product-content:not(:Contains(" + filter + "))").parent().slideUp();
+          $(list).find(".product-content:Contains(" + filter + ")").parent().slideDown();
+        } else {
+          $(list).find(".entry").slideDown();
+        }
+        return false;
+      })
+    .keyup( function () {
+        $(this).change();
+    });
+  }
+ 
+  $(function () {
+    listFilter($("#header"), $("#list"));
+  });
+}(jQuery));
+ 
+  </script>
 
 </head>
 <header>
@@ -109,7 +142,7 @@ include_once 'core/database/config.php';
 
           
     
-           $results = $mysqli->query("SELECT * FROM menu ORDER BY category_id");
+           $results = $mysqli->query("SELECT * FROM menu");
            if ($results) { 
             //output results from database
             $ctr1=1;

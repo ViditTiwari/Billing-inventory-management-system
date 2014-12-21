@@ -40,7 +40,7 @@ if(isset($_GET['ingriedient'])&& isset($_GET['init']))
       <ul class="nav navbar-nav">
         <li><a href="index.php">Dine-in <span class="sr-only">(current)</span></a></li>
         <li><a href="takeaway.php">Take Away</a></li>
-        <li><a href="user_detail.php">Home Delivery</a></li>
+        <li><a href="homedelivery.php">Home Delivery</a></li>
         <li><a href="addnewitems.php">Add New Items</a></li>    
         <li class="active"><a href="inventory.php">Inventory</a></li>    
         
