@@ -41,10 +41,11 @@ function add_kot_item($Name,$QTY,$TABLE_NO,$kot_no)
     $chicken=mysql_query("select chicken from menu where id='$ID'");
     $chicken=array_first_element($chicken);
     if($chicken!=0){
-         update_inventory($QTY);
+         update_inventory($QTY*$chicken);
+    }
   mysql_query("INSERT INTO kot (ID,QTY,TABLE_NO,kot_no) VALUES ('$ID','$QTY','$TABLE_NO','$kot_no')");
     
-}
+
 }
 function add_to_bill($ID,$QTY,$TABLE_NO,$PRICE,$bill_no)
 {
