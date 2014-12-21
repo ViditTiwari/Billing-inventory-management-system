@@ -1,6 +1,7 @@
 <?php
 session_start();
 
+
 include_once 'core/database/config.php';
 
 ?>
@@ -11,7 +12,7 @@ include_once 'core/database/config.php';
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/main.css">
     <link href="css/style.css" rel="stylesheet">
-    <script src="http://code.jquery.com/jquery-1.4.2.min.js"></script> 
+   
 
 
 
@@ -147,7 +148,7 @@ include_once 'core/database/config.php';
             echo '<button class="btn btn-success btn-xs">Add To Cart</button>';
             echo '</span>';
             echo '<input type="hidden" name="item_code" value="'.$obj->ID.'" />';
-            echo '<input type="hidden" name="table_no" value="table 1" />';
+            echo '<input type="hidden" name="table_no" value='.$table_no.' />';
             echo '<input type="hidden" name="type" value="add" />';
             echo '<input type="hidden" name="return_url" value="'.$current_url.'" />';
             echo '</form>';
@@ -179,7 +180,7 @@ include_once 'core/database/config.php';
                  { echo '<li class="cart-itm">';
                   echo '<span class="remove-itm"><a href="cart_update.php?removep='.$cart_itm["code"].'&return_url='.$current_url.'&table_no='.$cart_itm["table_no"].'">&times;</a></span>';
                   echo '<h3>'.$cart_itm["name"].'</h3>';
-                  
+                  echo 'mai hu bakchodi ki jad'.$cart_itm["table_no"];
                   echo '<div class="p-qty">Qty : '.$cart_itm["qty"].'</div>';
                   echo '<div class="p-price">Price :'.$currency.$cart_itm["price"].'</div>';
                   echo '</li>';
@@ -250,9 +251,6 @@ include_once 'core/database/config.php';
     </div>
     
 
-
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="js/bootstrap.js"></script>
 </body>
 </html>

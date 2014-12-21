@@ -11,7 +11,7 @@ include_once 'core/database/config.php';
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/main.css">
     <link href="css/style.css" rel="stylesheet">
-    <script src="http://code.jquery.com/jquery-1.4.2.min.js"></script> 
+    
 
 
 
@@ -147,7 +147,7 @@ include_once 'core/database/config.php';
             echo '<button class="btn btn-success btn-xs">Add To Cart</button>';
             echo '</span>';
             echo '<input type="hidden" name="item_code" value="'.$obj->ID.'" />';
-            echo '<input type="hidden" name="table_no" value="table 1" />';
+            echo '<input type="hidden" name="table_no" value='.$table_no.' />';
             echo '<input type="hidden" name="type" value="add" />';
             echo '<input type="hidden" name="return_url" value="'.$current_url.'" />';
             echo '</form>';
@@ -252,7 +252,6 @@ include_once 'core/database/config.php';
 
 
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="js/bootstrap.js"></script>
 </body>
 </html>
