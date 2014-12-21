@@ -1,3 +1,8 @@
+<html>
+<head>
+<title>KOT</title>
+</head>
+<body>
 <?php
 
 session_start();
@@ -44,9 +49,22 @@ if(isset($_SESSION["products"]))
             
            }
 
-           header('Location: cart_update.php?emptycart=1&return_url='.$return_url.'&table_no='.$table_no.'');
+           //header('Location: cart_update.php?emptycart=1&return_url='.$return_url.'&table_no='.$table_no.'');
            
-
+          $url = 'cart_update.php?emptycart=1&return_url='.$return_url.'&table_no='.$table_no.'';
+          
            
     
 ?>
+
+
+</body>
+<script type="text/javascript">
+window.print() ;
+ var data = '<?php echo $url;?>';
+
+window.location.replace(data);
+</script>
+
+
+</html>
