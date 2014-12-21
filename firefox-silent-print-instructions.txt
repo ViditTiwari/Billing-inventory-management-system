@@ -1,0 +1,14 @@
+First set your default printer with default settings.
+
+Setting up silent-print in firefox.
+
+1. In Firefox, hit CTRL-T to open a new tab
+2. Type in address bar - about:config
+3. Right-click on the list of options, select ‘New’ and choose ‘Boolean’
+4. The name of the setting is this: print.always_print_silent
+5. When you click the OK button, it will prompt you to select the true or false value. Select "true".
+6. To turn the feature back off, you can just double-click it in the about:config list.
+
+If you want to disable printing progress dialog also
+
+-> just set “print.show_print_progress” item value to “false”.
