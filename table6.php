@@ -52,19 +52,19 @@ include_once 'core/database/config.php';
       <pre >
      
        TABLE NUMBER   <div class="btn-group tables" >
-        <a href="#" class="active btn btn-default ">1</a>
+        <a href="index.php" class="btn btn-default ">1</a>
        <a href="table2.php" class="btn btn-default">2</a>
        <a href="table3.php" class="btn btn-default">3</a>
        <a href="table4.php" class="btn btn-default">4</a>
        <a href="table5.php" class="btn btn-default">5</a>
-       <a href="table6.php" class="btn btn-default">6</a>
+       <a href="table6.php" class="active btn btn-default">6</a>
         </div>
         </pre>
         <div class="panel panel-default">
          <div class="panel-body" style="text-align:center">
-            <strong>TABLE 1</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <strong>TABLE 6</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <?php 
-            $table_no = 1;
+            $table_no = 6;
              //current URL of the Page. cart_update.php redirects back to this URL
             $current_url = base64_encode("http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
             echo '<a href = "clear_table.php?table_no='.$table_no.'&return_url='.$current_url.'" class="btn btn-danger" >'
